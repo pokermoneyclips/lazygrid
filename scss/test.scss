@@ -1,0 +1,195 @@
+@import 'variables';
+
+// produces equally sized grid items
+@mixin grid_width() {
+	$grid_width_em: (($page_width / $grid) - ($gutter_px * 2))/$font_px; //math for grid width
+	.grid_#{$grid} {
+			width: $grid_width_em +0em;
+			margin: 0 $gutter_em +0em;
+			float:left;
+			@content;
+	}			
+}
+
+// $combine_span is the number of grid items you'd like to conjoin together
+@mixin column_combine ($combine_span) {
+	$grid_width_em: ((($page_width / $grid) * $combine_span) - ($gutters_px))/$font_px; //math for grid width
+	$if_grid_width: ((($page_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for if statements
+	.gridspan_#{$grid}_span#{$combine_span} {
+		min-width: $grid_width_em +0em;	
+		max-width: $grid_width_em +0em;	
+		margin: 0 $gutter_em +0em;
+		float:left;						
+		@content;
+	}
+}
+
+//mixin for nesting columns
+@mixin nesting ($combine_span, $nest_span) {
+$grid_width_px: ((($page_width / $grid) * $combine_span) - $gutters_px); //math for grid width
+$nest_width_px: ($grid_width_px - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+$nest_width_em: ($grid_width_px - $gutter_px * (($nest_span - 1) * 2))/$nest_span/$font_px; //math for nest width
+	@if($nest_span > $combine_span) { //print nothing as this grid won't work
+	@debug $combine_span - $nest_span;
+	}
+	
+	@else { //give them what they wanted
+		.nest_span#{$combine_span}_ns#{$nest_span} {
+			min-width: $nest_width_em +0em;
+			max-width: $nest_width_em +0em;
+			margin: 0 $gutter_em +0em;
+			float:left;
+			@content;
+			
+			&:first { // remove margin left from first element nested as its parent already has this
+				margin-left:0;
+			}
+			
+			&:last { // remove margin right from first element nested as its parent already has this
+				margin-right:0;
+			}
+		}
+	}
+}
+
+
+//pushing and pulling elements
+@mixin combine_pushpull($combine_spread, $pushpull: push) {
+	$grid_push_width_em: ((($page_width / $grid) * $combine_spread) - ($gutters_px))/$font_px; //math for grid width
+	
+	@if $pushpull == push {
+
+	}
+	@if $pushpull == pull {
+	float:right;
+	}
+}
+
+// media query generator used for media_column
+@mixin media_query_gen($min_width, $max_width) {
+	@media (min-width:$min_width/$font_px +0em) and (max-width:$max_width/$font_px +0em) {
+		@content;
+	}
+}
+
+
+// for creating media queries on the fly for overriding widths at various breakpoints
+@mixin media_column ($combine_span, $min_width, $max_width) {
+	$min_grid_width_em: ($min_width - $gutters_px)/$font_px; //math for min grid width
+	$max_grid_width_em: ($max_width - $gutters_px)/$font_px; //math for max grid width
+		@include media_query_gen($min_width, $max_width) {
+			.gridspan_#{$grid}_span#{$combine_span} {
+				min-width: $min_grid_width_em +0em;							
+				max-width: $max_grid_width_em +0em;							
+				margin: 0 $gutter_em +0em;
+				float:none;
+				clear:both;
+				@content;
+			}
+		}
+}
+
+
+//media query for nested elements
+@mixin media_nesting ($combine_span, $nest_span, $min_width, $max_width) {
+	$min_grid_width_em: ($min_width - $gutters_px)/$font_px; //math for min grid width
+	$max_grid_width_em: ($max_width - $gutters_px)/$font_px; //math for max grid width
+		@include media_query_gen($min_width, $max_width) {
+			.nest_span#{$combine_span}_ns#{$nest_span} {
+				min-width: $min_grid_width_em +0em;							
+				max-width: $max_grid_width_em +0em;							
+				margin: 0 $gutter_em +0em;
+				float:none;
+				clear:both;
+				@content;
+			}
+		}
+}
+
+
+//switch to box model for easier math
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+body {
+font-size: $font+0%;
+}
+
+// @include grid_width();
+@include grid_width();
+
+
+// @include column_combine (how many columns you'd like to combine)
+@include column_combine(1) {
+background:#ffcccc;
+}
+@include column_combine(2){
+background:#ff0000;
+}
+@include column_combine(3) {
+background:#3333FF;
+}
+@include column_combine(4) {
+background:#999;
+@include combine_pushpull(8, pull);
+}
+@include column_combine(5) {
+background:#996633;
+}
+@include media_column(5, 320, 480);
+@include media_column(5, 480, 720);
+@include column_combine(6) {
+background:#ccc;
+}
+@include column_combine(7) {
+background:#FFFF99;
+}
+@include column_combine(8) {
+background:#FFFF99;
+@include combine_pushpull(4, push);
+}
+@include column_combine(9) {
+background:#CCFFFF;
+}
+@include column_combine(10) {
+background:#003300;
+}
+@include column_combine(11) {
+background:#000066;
+}
+@include column_combine(12) {
+background:#66FF33;
+}
+
+//@include media_column(the number of columns you have you'd like to override, the min width in pixels, the max width in pixels) 
+@include media_column(5, 320, 480);
+
+
+// @include nesting (how many columns you had combined in column_combine then how many additional columns you'd like)
+@include nesting(12,12);
+@include nesting(12,11);
+@include nesting(12,10);
+@include nesting(12,9);
+@include nesting(12,8);
+@include nesting(12,7);
+@include nesting(12,6);
+@include nesting(12,5);
+@include nesting(12,4);
+@include nesting(12,3);
+
+//@include media_nesting (grid count, how many nested columns count, min width, max width for media query)
+@include media_nesting(12,3, 320, 480);
+
+
+@include nesting(12,2);
+@include nesting(12,1);
+

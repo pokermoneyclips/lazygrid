@@ -1,0 +1,102 @@
+// Variables in pixels
+$grid: 12; // how many columns in your grid
+$font_px: 16; // in pixels, 16px would be 1em or 100%
+$gutter_px: 10; // the margin space between gutters in pixels
+$page_width: 960; //desired page width in pixels
+$page_min: 320; // minimum size for all screens
+$tiny_max: 480; // max site for small screens
+$small_max: 600; // max size for smallish screens
+$medium_max: 768; // max size for medium screens
+
+
+// Math Conversions for swapping out the above values into pixels so we can use them
+@function font_size($font_px) {
+		@return $font_px / 16 * 100%;
+}
+
+// Some math to make life easeir ** DO NOT EDIT **
+$font: font_size($font_px); // returns your base font in % for happy css
+$gutters_px: ($gutter_px * 2); // returns the double gutter, didn't want * 2 in every mixin
+
+
+// EM Conversion ** DO NOT EDIT **
+$font_em: $font_px / $font_px;
+$gutter_em: $gutter_px / $font_px;
+$gutters_em: $gutter_em * 2;
+$page_width_em: $page_width / $font_px;
+$page_min_em: $page_min / $font_px;
+$tiny_max_em: $tiny_max / $font_px;
+$small_max_em: $small_max / $font_px;
+$medium_max_em: $medium_max / $font_px;
+
+
+//media queries
+@mixin breakpoint($point) {
+  @if $point == smallest { // 320 to 480
+    @media (min-width:$page_min_em+0em) and (max-width: $tiny_max_em+0em) { @content; }
+  }
+  @else if $point == small { // 480 to 600
+    @media (min-width:$tiny_max_em+0em) and (max-width: $small_max_em+0em) { @content; }
+  }
+  @else if $point == medium { // 600 to 768
+    @media (min-width:$small_max_em+0em) and (max-width: $medium_max_em+0em)  { @content; }
+  }
+  @else if $point == mediumish { // 768 to 960
+    @media (min-width:$medium_max_em+0em) and (max-width: $page_width_em+0em)  { @content; }
+  }
+  @else if $point == full { // 960
+    @media (min-width: $page_width_em+0em)  { @content; }
+  }  
+  
+}
+
+// for containers
+@mixin bodyminmax($sizes) {
+	@if $sizes == smallest { // 320 to 480
+		min-width: $page_min_em +0em;
+		max-width: $tiny_max_em +0em;
+	}
+
+	@else if $sizes == small { // 480 to 600
+		min-width: $tiny_max_em +0em;
+		max-width: $small_max_em +0em;
+	}
+	
+	@else if $sizes == medium { // 600 to 768
+		min-width: $small_max_em +0em;
+		max-width: $medium_max_em +0em;
+	}
+	
+	@else if $sizes == mediumish { // 768 to 960
+		min-width: $medium_max_em +0em;
+		max-width: $page_width_em +0em;
+	}
+	  
+	@else if $sizes == full { // 960
+		min-width: $page_width_em +0em;
+		max-width: $page_width_em +0em;
+	}  	
+}
+
+
+//container widths
+$list: smallest small medium mediumish full;
+@each $point in $list { 
+	#contain {
+		@include breakpoint($point) {
+			@include bodyminmax($point);
+			clear:both;
+			overflow:hidden;
+		}
+	}
+}
+
+@for $i from 2 through 7 {
+	#contain#{$i} {
+		@extend #contain;
+	}
+} 
+
+#contain2 {
+background:#000;
+}
