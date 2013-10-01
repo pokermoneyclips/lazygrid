@@ -1,0 +1,4 @@
+lazygrid
+========
+
+Adaptive sass grid
