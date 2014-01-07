@@ -1,0 +1,12 @@
+/* For Adaptive with Media Queries */
+@include mediamax_adapt (4, 720, 959);
+@include media_adapt (4, 960);
+
+
+/* For Adaptively Responsive with Media Queries */
+@include media_column (4, 720, 959);
+@include media_minonly (4, 960);
+
+
+/* Mobile First Approach */
+@include mobile_grid (4);

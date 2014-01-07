@@ -1,0 +1,42 @@
+@import 'helpful';
+@import 'grid';
+@import 'nest';
+
+body {
+font-size: $font+0%;
+line-height:1.5;
+background:#000;
+margin:0;
+}
+
+p {
+word-wrap:break-word;
+}
+
+#container {
+	clear:both;
+	overflow:hidden;
+	margin:0 auto;
+	background:#fff;
+}
+
+@media (min-width: 45em) and (max-width: 59.9375em) {
+#container {
+width:45em;
+}
+}
+
+@media (min-width: 60em) {
+#container {
+width:60em;
+}
+}
+
+.wrapper1, .wrapper2 {
+clear:both;
+}
+
+/* For Adaptive with Media Queries */
+@include media_column (4, 720, 959);
+@include media_minonly (4, 960);
+

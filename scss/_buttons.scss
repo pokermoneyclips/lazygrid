@@ -1,0 +1,69 @@
+//variables
+$black: #222;
+$blue: #006dcc;
+$green: #5BB75B;
+$red: #FF4040;
+
+//box shadow
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+	-webkit-box-shadow:$top $left $blur $color #{$inset};
+	-moz-box-shadow:$top $left $blur $color #{$inset};
+	box-shadow:$top $left $blur $color #{$inset};
+}
+
+//border radius
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.button,
+.button:visited { 
+	display:inline-block; 
+	text-align:center;
+	font-weight:bold;
+	padding:10px; 
+	margin:5px;
+	@include box_shadow(1px, 2px, 2px, #000); 
+	@include border-radius(3px); 
+	text-shadow: 1px 1px 1px #000;
+}
+
+
+.black {
+	background: $black;
+	color:#fff;
+	border:1px solid lighten($black, 20%);
+		&:hover {
+		background:lighten($black, 20%);
+		}
+}
+
+.blue {
+	background: $blue;
+	color:#fff;
+	border:1px solid darken($blue, 10%);
+		&:hover {
+		background:darken($blue, 10%);
+		}
+}
+
+.green {
+	background: $green;
+	color:#fff;
+	border:1px solid darken($green, 10%); 
+		&:hover {
+		background:darken($green, 10%);
+		}
+}
+
+.red {
+	background: $red;
+	color:#fff;
+	border:1px solid darken($red, 10%);
+		&:hover {
+		background:darken($red, 20%);
+		}
+}
