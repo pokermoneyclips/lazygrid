@@ -1,0 +1,46 @@
+#node-3 .nest_span6_ns2, #node-3 .nest_span6_ns1 {
+	@include textshadow(0px 0px 1px #fff);
+	//@include transition(all 1s ease);
+	
+	a {
+		@include transition(all 1s ease);
+		color:#ff0000;
+	}
+	
+	.pane-title {
+	@include transition(all 1s ease);
+	background:#000;
+	color:#fff;
+	@include textshadow(1px 1px 1px #444);
+	padding: 0 5px;
+	}
+}
+
+#node-3 .nest_span6_ns2:hover, #node-3 .nest_span6_ns1:hover {
+	color:#000;
+	@include textshadow(0px 0px 1px #fff);
+	
+	a {
+		color:#ff0000;
+	}
+	
+	.pane-title {
+	background:#000;
+	color:#fff;
+	@include textshadow(1px 1px 1px #444);
+	}
+
+}
+
+#node-3:hover {
+	@include textshadow(0px 0px 3px #000);
+	color: black(0.4);
+		a {
+			color: black(0.4);
+		}
+		.pane-title {
+			color: black(0.4);
+			background: black(0.01);
+			@include textshadow(1px 1px 1px #fff);
+		}
+}

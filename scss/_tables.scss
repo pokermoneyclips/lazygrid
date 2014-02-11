@@ -1,0 +1,19 @@
+// Zebra Striping
+tr {
+
+	&.even {
+	background: #008500;
+	color: #fff;
+		&:hover {
+		background: #00cc00;
+		color: #000;
+		}
+	}
+
+	&.odd {
+	background: #fff;
+		&:hover {
+		background:#00cc00;
+		}
+	}
+}

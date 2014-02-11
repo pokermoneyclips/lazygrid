@@ -1,0 +1,49 @@
+// margin and display setting
+@mixin spritealign {
+  display:inline-block;
+  margin:3px;
+}
+
+// Top share area
+.mynetworks-sprite, .mynetworks-drupal, .mynetworks-github, .mynetworks-rss {
+  background: url('../images/mynetworks-s44b2a0c0df.png') no-repeat;
+  height:64px;
+  width:64px;
+@include spritealign;
+}
+
+.mynetworks-drupal {
+  background-position: 0 -64px;
+}
+
+.mynetworks-github {
+  background-position: 0 -128px;
+}
+
+.mynetworks-rss {
+  background-position: 0 0;
+}
+
+// Share icons on blog posts
+.share-sprite, .share-facebook, .share-googleplus, .share-linkedin, .share-twitter {
+  background: url('../images/share-s9188e7f614.png') no-repeat;
+  height:32px;
+  width:36px;
+  @include spritealign;
+ }
+
+.share-facebook {
+  background-position: 0 -96px;
+}
+
+.share-googleplus {
+  background-position: 0 0;
+}
+
+.share-linkedin {
+  background-position: 0 -32px;
+}
+
+.share-twitter {
+  background-position: 0 -64px;
+}

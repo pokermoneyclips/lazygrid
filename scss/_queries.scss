@@ -34,21 +34,18 @@
 	}
 	
 	@else if $sizes == medium { // 600 to 768
-		//min-width: $small_max_em +0em;
-		//max-width: $medium_max_em +0em;
-		width: $small_max_em +0em;
+//		min-width: $small_max_em +0em;
+		max-width: $medium_max_em +0em;
 	}
 	
 	@else if $sizes == mediumish { // 768 to 960
-		//min-width: $medium_max_em +0em;
-		//max-width: $page_width_em +0em;
-		width: $medium_max_em +0em;
+//		min-width: $medium_max_em +0em;
+		max-width: $page_width_em +0em;
 	}
 	  
 	@else if $sizes == full { // 960
-		//min-width: $page_width_em +0em;
-		//max-width: $page_width_em +0em;
-		width: $page_width_em +0em;
+//		min-width: $page_width_em +0em;
+		max-width: $page_width_em +0em;
 	}  	
 }
 

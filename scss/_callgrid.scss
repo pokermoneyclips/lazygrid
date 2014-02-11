@@ -1,12 +1,29 @@
-/* For Adaptive with Media Queries */
-@include mediamax_adapt (4, 720, 959);
-@include media_adapt (4, 960);
+// Could I use an each loop here? Of course I could but this is easier (for me) to read this way
+
+// Mobile first
+@include mobile_grid(12);
+@include mobile_grid(8);
+@include mobile_grid(4);
+@include mobile_grid(3);
+
+// Nesting Mobile First
+@include mobile_nesting (8, 3); // 2 by 1 front page panel
+@include mobile_nesting (8, 2); // 2 by 1 front page panel
+
+// Nesting Front Media Queries
+@include nestmax_adapt (8, 3, 767, 959);
+@include nestmax_adapt (8, 2, 767, 959);
+@include nest_adapt (8, 3, 960);
+@include nest_adapt (8, 2, 960);
 
 
-/* For Adaptively Responsive with Media Queries */
-@include media_column (4, 720, 959);
-@include media_minonly (4, 960);
+// Layout Calls
+@include mediamax_adapt(12, 767, 959);
+@include mediamax_adapt(8, 767, 959);
+@include mediamax_adapt(4, 767, 959);
+@include mediamax_adapt(3, 767, 959);
+media_adapt (12, 960);
+media_adapt (8, 960);
+media_adapt (4, 960);
+media_adapt (3, 960);
 
-
-/* Mobile First Approach */
-@include mobile_grid (4);

@@ -1,0 +1,24 @@
+#top_area {
+margin-bottom:1em;
+border-bottom: 1px dashed #000;
+overflow:hidden;
+
+	& .gridspan_12_span4 {
+	text-align:right;
+	margin-top:2em;
+	}
+}
+
+.narog {
+font-size: 2.2 * $font_em +0em;
+color:black(0.9);
+padding-bottom:0;
+@include textshadow(3px 3px 3px black(0.2), 6px 6px 6px black(0.6));
+}
+
+.slo {
+font-size: 1.3 * $font_em +0em;
+color:black(0.9);
+padding-top:0;
+@include textshadow(3px 3px 3px black(0.2), 6px 6px 6px black(0.6));
+}

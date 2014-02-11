@@ -1,0 +1,26 @@
+ul.tabs {
+font-size:1.25em;
+text-align:right;
+	& a {
+	color:#000;
+		&:hover {
+		color:#fff;
+		}
+	}
+}
+
+ul.primary {
+margin:1em 0;
+}
+
+ul.primary li, ul.primary li.active {	
+	& a {
+	display:inline-block;
+	padding:5px;
+	background:#fff;
+		&:hover {
+		background:#bbb;
+		padding:5px;
+		}
+	}
+}

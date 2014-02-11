@@ -1,0 +1,10 @@
+input:not([type=submit]):not([type=file]) {
+border:1px solid #000;
+width:12em;
+@include transition(all 2s ease);
+}
+
+input:not([type=submit]):not([type=file]):focus {
+width: 15em;
+background: #eee;
+}
