@@ -1,0 +1,81 @@
+﻿@import 'helpful';
+@import 'grid';
+@import 'nest';
+
+body {
+	margin:0;
+	font-size: $font; // from _variables.scss
+	line-height: $font * 1.5;
+	background: blue;
+}
+
+p {
+	margin: 0;
+	padding: 0 0 1em;
+	&:last-of-type {
+		padding:0;
+	}
+}
+
+
+##{$container_name} {
+			max-width: $page_width_em +0em;
+			margin: 0 auto;
+			background:#fff;
+}
+
+#header {
+	padding: 1em;
+	background: #fff;
+}
+
+#body_wrapper {
+	overflow:hidden;
+	background:#999;
+}
+
+#footer {
+	background: #000;
+	color:#fff;
+	clear:both;
+	text-align:center;
+	padding:1em;
+}
+
+
+$mygrids: 3 4 5 6 7 8 9;
+@each $item in $mygrids {
+	@include mobile_grid ($item);
+	@include media_column ($item, 720, 880);
+	@include media_column ($item, 881, 959);
+	@include media_adapt($item, 960);
+}
+
+.table_wrap {
+overflow:hidden;
+clear:both;
+}
+
+.first {
+	background: #ccc;
+}
+
+.second {
+	background: #aaa;
+}
+
+.third {
+	background: #bbb;
+}
+
+.fourth {
+	background: #eee;
+}
+
+@include media_query_gen(720, 959) {
+	.table_wrap {
+		display: table;
+		border-collapse:separate;
+		border-spacing:$gutter_em +0em;
+	}
+}

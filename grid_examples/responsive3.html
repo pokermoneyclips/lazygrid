@@ -1,0 +1,81 @@
+﻿<html>
+<head>
+<link href="css/responsive3.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Fluid Width Design Demo</h1>
+		<h2>Using Pushing and Pulling Techniques for SEO and Setting Width on Body</h2>
+	</div>
+	
+	<div id="body_wrapper"><!-- This is the wrapper for our 3 columns -->
+		
+		<div id="main_content">
+			<div class="content_inner">
+				<p>This demo is almost identical to the other pushing and pulling responsive demo with 1 exception: we set a max-width on our container element - named #container.</p>
+				<code>
+				<pre>
+##{$container_name} {
+	max-width: $page_width_em +0em;
+	margin: 0 auto;
+}				</pre>
+				</code>
+				<p>$container_name is a variable from the _variables.scss file. I also also added some background colors for the header and this main_content area to illustrate the regions.</p>
+				<p>This content comes first in our body markup. There is a wrapper around the 3 columns called body_wrapper that was not produced by the grid system (but technically could have been using _variables.scss and a for loop)</p>
+				<p>The #id main_content is where all the magic happens. Using the following code:</p>
+				<code>
+				<pre>
+#main_content {
+	width: 100%;
+	float: left;
+	margin-right: -100%;
+	@extend %push_2;
+	@extend %pull_4;
+}
+				</pre>
+				</code>
+				<p>We are able to create this region in the center. The @extend %push_2 and %pull_4 set the correct padding to the left and right to float our sidebars correctly.
+			</div>
+		</div>
+		
+		<div class="gridspan_12_span4_up pull_4">
+			<p>This content comes second in our markup.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include percent_mobile (4);
+@include percent_tablet (4) {float:left;};
+@include percent_combine (4, up);
+@include percent_pushnpull (4, up, pull);
+
+			</code>
+			<p>Percent_mobile is used for our mobile first design. Percent_tablet is used to double the width of this column at a specific breakpoint. Percent_combine and percent_pushpull generate the width and negative margins for larger displays.</p>
+		</div>
+		
+		<div class="gridspan_12_span2_down push_2">
+			<p>This content comes third in our markup.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include percent_mobile (2);
+
+@include percent_tablet (2) {float:left;};
+
+@include percent_combine (2, down);
+
+@include percent_pushnpull (2, down, push);
+
+			</code>
+			<p>We used down to round this value down so our columns would equal 100% (2 and 4 both rounded up would be over 100%). We pushed to float this element to the left making it appear as though its first on the screen.</p>
+		</div>
+		
+	</div>
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

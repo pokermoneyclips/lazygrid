@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<link href="css/static.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Regular Old 960 Grid</h1>
+		<h2>Using Pushing and Pulling Techniques for SEO</h2>
+	</div>
+	
+	<div id="body_wrapper"><!-- This is the wrapper for our 3 columns -->
+		
+		<div id="content_wrap">
+			<div class="content_inner">
+				<p>The container element has a set width on it to prevent any sort of shrinkage or resizing. This is a standard no non-sense fixed width page.</p>
+				<p>This content comes first in our body markup. There is a wrapper around the 3 columns called body_wrapper that was not produced by the grid system (but technically could have been using _variables.scss and a for loop)</p>
+				<p>The #id content_wrap is where all the magic happens. Using the following code:</p>
+				<code>
+				<pre>
+#content_wrap {
+	@extend %push_4;
+	@extend %pull_3;
+	@extend %pushpull;
+}
+				</pre>
+				</code>
+				<p>We are able to create this region in the center. The @extend %push_4 and %pull_3 set the correct padding to the left and right to float our sidebars correctly. The %pushpull sets the additional markup to get everything to cooperate.</p>
+			</div>
+		</div>
+		
+		<div class="gridspan_12_span3 pull_3">
+			<p>This content comes second in our markup.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include column_combine (3);
+@include combine_pushpull(3, pull);
+
+			</code>
+			<p>Column_combine sets our width and combine_pushpull sets the correct negative margin and float position.</p>
+		</div>
+		
+		<div class="gridspan_12_span4 push_4">
+			<p>This content comes third in our markup.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include column_combine (4) {color:#fff;};
+@include combine_pushpull(4);
+
+			</code>
+			<p>Column_combine sets the width. I included color as its on a black background. Combine_pushpull sets the push for negative margin and float. There is no secondary argument because push is default.</p>
+		</div>
+		
+	</div>
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

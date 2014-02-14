@@ -1,0 +1,73 @@
+﻿@import 'helpful';
+@import 'grid';
+@import 'nest';
+
+body {
+	margin:0;
+	font-size: $font; // from _variables.scss
+	line-height: $font * 1.5;
+	background: blue;
+}
+
+p {
+	margin: 0;
+	padding: 0 0 1em;
+	&:last-of-type {
+		padding:0;
+	}
+}
+
+$sizes: 720 800 880 960;
+@each $widths in $sizes {
+	@include media_query_minonly($widths) {
+		##{$container_name} {
+			max-width: $widths/$font_px +0em;
+			margin: 0 auto;
+			background:#fff;
+		}
+	}
+}
+
+#header {
+	padding: 1em;
+	background: #fff;
+}
+
+#body_wrapper {
+	overflow:hidden;
+	background:#999;
+	& > div { // http://css-tricks.com/fluid-width-equal-height-columns/
+		margin-bottom: -99999px;
+		padding-bottom: 99999px;
+
+	}
+}
+
+#footer {
+	background: #000;
+	color:#fff;
+	clear:both;
+	text-align:center;
+	padding:1em;
+}
+
+// Mobile First
+@include mobile_grid (8) {background:#ccc;};
+@include mobile_grid (4) {background:#000;color:#fff;};
+@include mobile_nesting (8, 4);
+
+@each $query in $sizes {
+	@include media_minonly (8, $query);
+	@include media_minonly (4, $query);
+	@include nest_adapt (8, 4, $query);
+
+}
+
+.nest_wrap {
+	background: #aaa;
+	overflow: hidden;
+}
+
+.padding {
+	padding: 0 $gutter_em +0em;
+}

@@ -1,0 +1,84 @@
+﻿<html>
+<head>
+<link href="css/adaptive2.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Adaptive Grid</h1>
+		<h2>Nesting Elements</h2>
+	</div>
+	
+	<div id="body_wrapper"><!-- This is the wrapper for our 3 columns -->
+		
+
+			<div class="gridspan_12_span8">
+				<div class="padding"><p>We're using the same concept from Adaptive Grid Widths to redo our sizes based on media queries.</p>
+			<p>Here's the code:</p>
+				<code>
+
+$sizes: 720 800 880 960;
+@each $widths in $sizes {
+	@include media_query_minonly($widths) {
+		##{$container_name} {
+			max-width: $widths/$font_px +0em;
+			margin: 0 auto;
+			background:#fff;
+		}
+	}
+}
+				</code>
+				<p>The $sizes list are the values I want to set up as the breakpoints. The width needed to be converted from pixels to ems so I took the pixel value and divided it by the base font size (which is also in pixels.)</p>
+					</div>
+				<div class="nest_wrap">
+					<div class="nest_span8_ns4 padding">
+						<p>This is a nested element. For some reason the nest span value is complete reverse of the gridspan, which I'll probably correct soon. For this its nest span 4, although typically it would've been span 2. Oh well....</p>
+					</div>
+					<div class="nest_span8_ns4 padding">
+						<p>This is also a nested element. The cool thing about nested elements is that the margin is automatically removed from the first and last items, that way there's no double margin going on with its parent.</p>
+					</div>
+					<div class="nest_span8_ns4 padding">
+						<p>This is my third nested element. Cool right?</p>
+					</div>
+					<div class="nest_span8_ns4 padding">
+						<p>And here's the fourth nested element.</p>
+					</div>
+				</div>
+			
+			</div>
+
+		
+		<div class="gridspan_12_span4">
+			<div class="padding">
+				<p>Please be aware that when using this grid system and the box model you can run into trouble doing the following:</p>
+				<p>If you add padding to the grid_span_x_spanx grid then try to add nested elements inside the math will be wrong. The nest is built off the width and margin of the parent element only, adding padding cuts into said value and breaks it. That being said the media query nester could probably be split out to not include the media query portion to allow nests to be built using different widths than expected.</p>
+				<code>
+
+// Mobile First
+@include mobile_grid (8) {background:#ccc;};
+@include mobile_grid (4) {background:#000;color:#fff;};
+@include mobile_nesting (8, 4);
+
+@each $query in $sizes {
+	@include media_minonly (8, $query);
+	@include media_minonly (4, $query);
+	@include nest_adapt (8, 4, $query);
+
+}
+
+.padding {
+	padding: 0 $gutter_em +0em;
+}
+				</code>
+				<p>The each query here is using the same list that the container used</p>			
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

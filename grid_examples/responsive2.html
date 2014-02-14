@@ -1,0 +1,85 @@
+﻿<html>
+<head>
+<link href="css/responsive2.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>100% Responsive Design Demo</h1>
+		<h2>Source Order Dependent</h2>
+	</div>
+	
+	<div id="body_wrapper"><!-- This is the wrapper for our 3 columns -->
+		
+		<div class="gridspan_12_span6_up">
+				<p>This content comes first in our body markup. This is using the standard notation for creating a grid class.</p>
+				<p>Using the following code:</p>
+				<code>
+				<pre>
+@include percent_mobile (6);
+
+@include percent_combine (6) {float:left;};
+				</pre>
+				</code>
+				<p>We have created a grid element that spans 50% of our screen (its a 12 column grid and we're spanning across 6 columns.) There's no need to use the doubler function as that would give us 100%, the same value our mobile call gives us.</p>
+		
+			<div class="nest_wrap"><!-- Wrapper element for nested elements -->
+				<div class="gridspan_12_span6_up">
+				<p>This is a nested element. It is using the same call of (6) to span 50% of its container.</p>
+				<p>Adding the following to your sass file will remove the left padding from the first nested element and the right padding from the last nested element as the parent already has padding (in this case there are only two but hey)</p>
+				<code>
+				[nesting wrapper div] > div {
+					&:first-of-type {
+						padding-left:0;
+					}
+					&:last-of-type {
+						padding-right:0;
+					}
+				}
+				</code>
+				</div>
+				<div class="gridspan_12_span6_up">
+				<p>This is a nested element. It is using the same call of (6) to span 50% of its container.</p>
+				<p>[nesting wrapper div] is the class name or element you used to properly wrap your nesting elements. > div could be replaced by whatever other element you used to group your nested items.</p>
+				<p>There will be padding when you shrink as well. A bit more sass will make that go away. [This is an alpha build and nesting wasn't built into the percentage grid yet]</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="gridspan_12_span4_up">
+			<p>This is our second grid item, but will appear 4th in mobile displays as we have nested elements in our first element.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include percent_mobile (4);
+@include percent_tablet (4) {float:left;};
+@include percent_combine (4, up) {float:left;};
+
+			</code>
+			<p>Percent_mobile is used for our mobile first design. Percent_tablet is used to double the width of this column at a specific breakpoint. Percent_combine generates the width for larger displays (34%).</p>
+		</div>
+		
+		<div class="gridspan_12_span2_down">
+			<p>This is our third grid item but will appear 5th in mobile as we hvae nested elements in our first element.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include percent_mobile (2);
+
+@include percent_tablet (2) {float:left;};
+
+@include percent_combine (2, down);
+
+			</code>
+			<p>We used down to round this value down so our columns would equal 100% (2 and 4 both rounded up would be over 100%).</p>
+		</div>
+		
+	</div>
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

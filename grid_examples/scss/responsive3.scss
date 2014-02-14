@@ -1,0 +1,88 @@
+﻿@import 'helpful';
+@import 'percentages';
+
+$border: 3px solid #FF0000;
+
+body {
+	margin:0;
+	font-size: $font; // from _variables.scss
+	line-height: $font * 1.5;
+	background: blue;
+}
+
+p {
+	margin: 0;
+	padding: 0 0 1em;
+	&:last-of-type {
+		padding:0;
+	}
+}
+
+##{$container_name} {
+	max-width: $page_width_em +0em;
+	margin: 0 auto;
+}
+
+#body_wrapper {
+	overflow: hidden;
+	
+	& > div { // http://css-tricks.com/fluid-width-equal-height-columns/
+		margin-bottom: -99999px;
+		padding-bottom: 99999px;
+	}
+	
+}
+
+// Mobile
+@include percent_mobile (2) {background:#000; color:#fff;};
+@include percent_mobile (4) {background:#ccc;};
+
+// Tablets
+@media screen and (min-width:641px) {
+	@include percent_tablet (2) {float:left;};
+	@include percent_tablet (4) {float:left;};
+}
+
+// Responsive
+@media screen and (min-width:870px) {
+	@include percent_combine (2, down) {border-right: $border;};
+	@include percent_pushnpull (2, down, push);
+	@include percent_combine (4, up) {border-left: $border;};
+	@include percent_pushnpull (4, up, pull);
+	
+	#main_content {
+	width: 100%;
+	float: left;
+	margin-right: -100%;
+	@extend %push_2;
+	@extend %pull_4;
+	}
+}
+
+#main_content {
+	background: #fff;
+}
+
+.content_inner {
+	width: 100%;
+	padding: 0 $gutter_em +0em; // from _variables.scss
+}
+
+#header {
+padding: 0.4em 1em;
+border-bottom: $border;
+background: #fff;
+}
+
+#menu {
+
+}
+
+#footer {
+	clear:both;
+	background: #000;
+	color:#fff;
+	padding: 1em 0;
+	text-align:center;
+	border-top: $border;
+}

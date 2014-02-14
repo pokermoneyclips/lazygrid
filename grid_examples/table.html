@@ -1,0 +1,88 @@
+﻿<html>
+<head>
+<link href="css/table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Display Table and Display Table Cell</h1>
+		<h2>The Responsively Adaptive Display</h2>
+		<h3>And the design that'll probably get my web developer card revoked</h3>
+	</div>
+	
+	<div class="table_wrap first"><!-- This is the wrapper for our first section -->
+			<div class="gridspan_12_span8">
+				<p>This is a column that spans across by 8</p>
+				<p>Our code looks a little something like this:</p>
+				<code>
+$mygrids: 3 4 5 6 7 8 9;
+@each $item in $mygrids {
+	@include mobile_grid ($item);
+	@include media_column ($item, 720, 880);
+	@include media_column ($item, 881, 959);
+	@include media_adapt($item, 960);
+}				
+				</code>
+			</div>
+			
+		
+			<div class="gridspan_12_span4">
+				<p>This is a column that spans across by 4</p>
+				<p>This is the code on the container</p>
+				<code>
+##{$container_name} {
+	max-width: $page_width_em +0em;
+	margin: 0 auto;
+	background:#fff;
+}
+				</code>
+			</div>
+	</div><!-- END This is the wrapper for our first section -->
+
+
+	<div class="table_wrap second"><!-- This is the wrapper for our second section -->
+			<div class="gridspan_12_span7">
+				<p>To minimize the evil of the display:table-cell its only available in a min / max mixin to be used between the small and large display size.</p>
+				<p>Table cell must be contained within a wrapper with the display:table attribute. Table-cells will wrap to other elements if they are anywhere near eachother and don't have a proper wrapper.</p>
+			</div>
+			
+		
+			<div class="gridspan_12_span5">
+				<p>The Table cell element does however produce something that I really wanted in design, which was a min and max width for columns without using percentages. By setting a width on an element with display:table-cell it'll treat that width as a max-width, meaning it can shrink below but never grow above.</p>
+			</div>
+	</div><!-- END This is the wrapper for our second section -->
+
+
+	<div class="table_wrap third"><!-- This is the wrapper for our third section -->
+			<div class="gridspan_12_span6">
+				<p>The margin property also doesn't work with table cells and must be applied elsewhere. You could place another element inside the table cell and apply padding or margins to it to get the correct spacing you're going for or apply border-collapse and border properties to the element with display:table</p>
+			</div>
+			
+		
+			<div class="gridspan_12_span6">
+				<p>The good news is that heights seem to work ok</p>
+			</div>
+	</div><!-- END This is the wrapper for our third section -->
+
+
+	<div class="table_wrap fourth"><!-- This is the wrapper for our fourth section -->
+			<div class="gridspan_12_span3">
+				<p>This is a column that spans across by 3</p>
+			</div>
+			
+		
+			<div class="gridspan_12_span9">
+				<p>This is a column that spans across by 9</p>
+			</div>
+	</div><!-- END This is the wrapper for our fourth section -->
+	
+	
+	
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

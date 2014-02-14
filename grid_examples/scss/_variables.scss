@@ -1,0 +1,37 @@
+// Variables in pixels
+$grid: 12; // how many columns in your grid
+$font_px: 16; // in pixels, 16px would be 1em or 100%
+$gutter_px: 10; // the margin space between gutters in pixels
+$page_width: 960; //desired page width in pixels
+$page_min: 320; // minimum size for all screens
+$tiny_max: 480; // max site for small screens
+$small_max: 600; // max size for smallish screens
+$medium_max: 768; // max size for medium screens
+
+// Page Elements
+$container_name: container; // Name of your body container (wrapper)
+$gridwrap_name: grid_wrap; // Name of your grid container (wrapper)
+$gridwrap_count: 4; //How many grid containers do you want created?
+
+
+
+// ** DO NOT EDIT BELOW THIS LINE **
+// Math Conversions for swapping out the above values into pixels so we can use them ** DO NOT EDIT **
+@function font_size($font_px) {
+		@return $font_px / 16 * 100%;
+}
+
+// Some math to make life easeir ** DO NOT EDIT **
+$font: font_size($font_px); // returns your base font in % for happy css
+$gutters_px: ($gutter_px * 2); // returns the double gutter, didn't want * 2 in every mixin
+
+
+// EM Conversion ** DO NOT EDIT **
+$font_em: $font_px / $font_px;
+$gutter_em: $gutter_px / $font_px;
+$gutters_em: $gutter_em * 2;
+$page_width_em: $page_width / $font_px;
+$page_min_em: $page_min / $font_px;
+$tiny_max_em: $tiny_max / $font_px;
+$small_max_em: $small_max / $font_px;
+$medium_max_em: $medium_max / $font_px;

@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+<link href="css/adaptive1.css" media="screen, projection" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Adaptive Grid</h1>
+		<h2>Media Queries and Various Widths on the Container</h2>
+	</div>
+	
+	<div id="body_wrapper"><!-- This is the wrapper for our 3 columns -->
+		
+
+			<div class="gridspan_12_span5">
+				<p>The container here is being resized multiple times to create several rescaling points. This is being done via media queries.</p>
+				<p>There is a 20 pixel buffer (+20) added to all values provided as the min point because Chrome and Firefox view breakpoints differently based on the scrollbar. The extra 20 pixels is a hack to prevent any sort of wrapping anywhere.</p>
+				<p><em>I might take out the +20 pixel buffer in the future depending on how much trouble that causes, or make some sort of other adjustment.</em></p>
+				<p>Here's the code:</p>
+				<code>
+
+$sizes: 720 800 880 960;
+@each $widths in $sizes {
+	@include media_query_minonly($widths) {
+		##{$container_name} {
+			max-width: $widths/$font_px +0em;
+			margin: 0 auto;
+			background:#fff;
+		}
+	}
+}
+				</code>
+				<p>The $sizes list are the values I want to set up as the breakpoints. The width needed to be converted from pixels to ems so I took the pixel value and divided it by the base font size (which is also in pixels.)</p>
+			</div>
+
+		
+		<div class="gridspan_12_span3">
+			<p>This content comes second in our markup.</p>
+			<p>And our 100% height background colors on all of these columns is being provided using the same trick that was used for percentages</p>
+
+		</div>
+		
+		<div class="gridspan_12_span4">
+			<p>This comes third.</p>
+			<p>We used the following mixins</p>
+			<code>
+
+@include mobile_grid (3) {background:#ccc;};
+@include mobile_grid (4) {background:#000;color:#fff;};
+@include mobile_grid (5) {background:#FF0000;};
+
+@each $query in $sizes {
+	@include media_minonly (3, $query);
+	@include media_minonly (5, $query);
+	@include media_minonly (4, $query);
+}
+			</code>
+			<p>The each query here is using the same list that the container used</p>			
+		</div>
+		
+	</div>
+	
+	<div id="footer">
+		<p>Download the grid system yourself at github.com/pokermoneyclips</p>
+	</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-size: 100%;
+  line-height: 150%;
+  background: blue; }
+
+p {
+  margin: 0;
+  padding: 0 0 1em; }
+  p:last-of-type {
+    padding: 0; }
+
+@media (min-width: 46.25em) {
+  #container {
+    max-width: 45em;
+    margin: 0 auto;
+    background: #fff; } }
+@media (min-width: 51.25em) {
+  #container {
+    max-width: 50em;
+    margin: 0 auto;
+    background: #fff; } }
+@media (min-width: 56.25em) {
+  #container {
+    max-width: 55em;
+    margin: 0 auto;
+    background: #fff; } }
+@media (min-width: 61.25em) {
+  #container {
+    max-width: 60em;
+    margin: 0 auto;
+    background: #fff; } }
+#header {
+  padding: 1em;
+  background: #fff; }
+
+#body_wrapper {
+  overflow: hidden;
+  background: #999; }
+  #body_wrapper > div {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+    padding-left: 0.625em;
+    padding-right: 0.625em; }
+
+#footer {
+  background: #000;
+  color: #fff;
+  clear: both;
+  text-align: center;
+  padding: 1em; }
+
+.gridspan_12_span3 {
+  margin: 0 0.625em 0.625em;
+  background: #ccc; }
+
+.gridspan_12_span4 {
+  margin: 0 0.625em 0.625em;
+  background: #000;
+  color: #fff; }
+
+.gridspan_12_span5 {
+  margin: 0 0.625em 0.625em;
+  background: #FF0000; }
+
+@media (min-width: 46.25em) {
+  .gridspan_12_span3 {
+    width: 10em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.25em) {
+  .gridspan_12_span5 {
+    width: 17.5em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.25em) {
+  .gridspan_12_span4 {
+    width: 13.75em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.25em) {
+  .gridspan_12_span3 {
+    width: 11.25em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.25em) {
+  .gridspan_12_span5 {
+    width: 19.58333em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.25em) {
+  .gridspan_12_span4 {
+    width: 15.41667em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.25em) {
+  .gridspan_12_span3 {
+    width: 12.5em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.25em) {
+  .gridspan_12_span5 {
+    width: 21.66667em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.25em) {
+  .gridspan_12_span4 {
+    width: 17.08333em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span3 {
+    width: 13.75em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span5 {
+    width: 23.75em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span4 {
+    width: 18.75em;
+    margin: 0 0.625em;
+    float: left; } }

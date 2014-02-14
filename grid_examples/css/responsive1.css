@@ -1,0 +1,114 @@
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-size: 100%;
+  line-height: 150%;
+  height: 100%; }
+
+p {
+  margin: 0;
+  padding: 0 0 1em; }
+  p:last-of-type {
+    padding: 0; }
+
+#container {
+  width: 100%; }
+
+#body_wrapper {
+  overflow: hidden; }
+  #body_wrapper > div {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px; }
+
+.gridspan_12_span2_up {
+  width: 100%;
+  padding: 0 0.625em;
+  background: #000;
+  color: #fff; }
+
+.gridspan_12_span2_down {
+  width: 100%;
+  padding: 0 0.625em;
+  background: #000;
+  color: #fff; }
+
+.gridspan_12_span4_up {
+  width: 100%;
+  padding: 0 0.625em;
+  background: #ccc; }
+
+.gridspan_12_span4_down {
+  width: 100%;
+  padding: 0 0.625em;
+  background: #ccc; }
+
+@media screen and (min-width: 641px) {
+  .gridspan_12_span2_up {
+    width: 34%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span2_down {
+    width: 32%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span4_up {
+    width: 68%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span4_down {
+    width: 66%;
+    padding: 0 0.625em;
+    float: left; } }
+@media screen and (min-width: 870px) {
+  .gridspan_12_span2_down {
+    width: 16%;
+    padding: 0 0.625em;
+    border-right: 3px solid red; }
+
+  .push_2 {
+    margin-right: -16%;
+    float: left; }
+
+  #main_content {
+    padding-left: 16%; }
+
+  .gridspan_12_span4_up {
+    width: 34%;
+    padding: 0 0.625em;
+    border-left: 3px solid red; }
+
+  .pull_4 {
+    margin-left: -34%;
+    float: right; }
+
+  #main_content {
+    padding-right: 34%; }
+
+  #main_content {
+    width: 100%;
+    float: left;
+    margin-right: -100%; } }
+.content_inner {
+  width: 100%;
+  padding: 0 0.625em; }
+
+#header {
+  padding: 0 1em;
+  border-bottom: 3px solid red; }
+
+#footer {
+  clear: both;
+  background: #000;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+  border-top: 3px solid red; }

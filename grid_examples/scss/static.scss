@@ -1,0 +1,56 @@
+﻿@import 'helpful';
+@import 'grid';
+
+body {
+	margin:0;
+	font-size: $font; // from _variables.scss
+	line-height: $font * 1.5;
+	background: blue;
+}
+
+p {
+	margin: 0;
+	padding: 0 0 1em;
+	&:last-of-type {
+		padding:0;
+	}
+}
+
+##{$container_name} {
+	width: $page-width_em +0em;
+	margin: 0 auto;
+	background:#fff;
+}
+
+#header {
+	padding: 1em;
+}
+
+#body_wrapper {
+	overflow:hidden;
+	background: url("../images/adaptive_bg.gif") repeat-y;
+}
+
+#footer {
+	background: #000;
+	color:#fff;
+	clear:both;
+	text-align:center;
+	padding:1em;
+}
+
+@include column_combine (4) {color:#fff;};
+@include column_combine (3);
+
+@include combine_pushpull(4);
+@include combine_pushpull(3, pull);
+
+#content_wrap {
+	@extend %push_4;
+	@extend %pull_3;
+	@extend %pushpull;
+}
+
+.content_inner {
+	margin: 0 $gutter_em +0em;
+}
