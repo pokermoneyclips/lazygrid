@@ -1,0 +1,21 @@
+// Grid Sizes
+$sizes: 1 2 3 4 5 6 7 8 9 10 11 12;
+
+
+@each $size in $sizes {
+	// Mobile
+	@include percent_mobile($size); // Fluid
+	@include mobile_grid ($size); // Adaptive	
+	// Full Width
+	@include min_width { 
+		@include percent_combine ($size) { float: left;};
+		@include percent_combine ($size, down) { float: left;};
+	} // Fluid
+	
+	@include media_adapt ($size, 721);
+	@include media_adapt ($size, 801);
+	@include media_adapt ($size, 881);
+	@include media_adapt ($size, 960);
+
+	
+}

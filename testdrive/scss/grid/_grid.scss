@@ -1,0 +1,188 @@
+// !-- all grid mixins WITH PREDEFINED CLASSES will be found below in a cleanup effort to keep things neat and organized --
+// produces equally sized grid items
+@mixin grid_width() {
+	$grid_width_em: (($page_width / $grid) - ($gutter_px * 2))/$font_px; //math for grid width
+	.grid_#{$grid} {
+			width: $grid_width_em +0em;
+			margin: 0 $gutter_em +0em;
+			float:left;
+			@content;
+	}			
+}
+
+// $combine_span is the number of grid items you'd like to conjoin together
+@mixin column_combine ($combine_span) {
+	$grid_width_em: ((($page_width / $grid) * $combine_span) - ($gutters_px))/$font_px; //math for grid width
+	.gridspan_#{$grid}_span#{$combine_span} {
+		width: $grid_width_em +0em;	
+		margin: 0 $gutter_em +0em;
+		float:left;						
+		@content;
+	}
+}
+
+// Adaptive Media Queries
+// Min and Max
+@mixin mediamax_adapt ($combine_span, $min_width, $max_width) {
+	$grid_width_em: ((($min_width / $grid) * $combine_span) - ($gutters_px))/$font_px; //math for grid width
+	@include media_query_gen($min_width, $max_width) {
+		.gridspan_#{$grid}_span#{$combine_span} {
+			width: $grid_width_em +0em;	
+			margin: 0 $gutter_em +0em;
+			float:left;						
+			@content;
+			}
+	}
+}
+
+// Min only
+@mixin media_adapt ($combine_span, $min_width) {
+	$grid_width_em: ((($min_width / $grid) * $combine_span) - ($gutters_px))/$font_px; //math for grid width
+	@include media_query_minonly($min_width) {
+		.gridspan_#{$grid}_span#{$combine_span} {
+			width: $grid_width_em +0em;	
+			margin: 0 $gutter_em +0em;
+			float:left;						
+			@content;
+			}
+	}
+}
+
+// This one will produce wrapping so Im not really sure of a use case
+@mixin media_inline ($combine_span, $min_width, $max_width) {
+	$if_grid_width: ((($page_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for if statements
+	$grid_width_em: $if_grid_width/$font_px; // convert from pixels to em
+	// min and max in pixels
+	$if_min_width: ((($min_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for min
+	$if_max_width: ((($max_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for max
+	//min and max in ems
+	$min_grid_width_em: $if_min_width/$font_px;
+	$max_grid_width_em: $if_max_width/$font_px;
+	
+	@include media_query_gen($min_width, $max_width) {
+			.gridspan_#{$grid}_span#{$combine_span} {
+				@if($if_min_width >= $if_grid_width) {
+					min-width: $grid_width_em +0em;
+				}
+				@else {
+					min-width: $min_grid_width_em +0em;
+				}
+				@if($if_max_width >= $if_grid_width) {
+					max-width: $grid_width_em +0em;
+				}
+				@else {
+					max-width: $max_grid_width_em +0em;
+				}
+				margin:0 $gutter_em +0em;
+				display:inline-block;
+				vertical-align:top;
+				@content;
+			}
+		}
+}
+
+
+
+// for creating media queries on the fly for overriding widths at various breakpoints
+// theres alot going on here so lets break it down
+// yes this sucks as its using table css and wont degrade well but hey I refused to use percentage values and wanted this to be a variable width
+//http://stackoverflow.com/questions/18367959/table-columns-setting-both-min-and-max-width-with-css for why we use width only
+// half this code isnt needed anymore as its no longer min and max width but Ill leave it for legacy purposes
+// we are no longer including gutters on here as well apply them further down the tree. Double divs are needed now but if youre using a CMS you probably have at least that in added markup anyway 
+// Display Table is evil which is why everyone is using percentage widths for grids as opposed to trying to do it this way
+@mixin media_column ($combine_span, $min_width, $max_width) {
+	$if_grid_width: ((($page_width / $grid) * $combine_span)); // comparison operator for if statements
+	$grid_width_em: $if_grid_width/$font_px; // convert from pixels to em
+	// min and max in pixels
+	$if_min_width: ((($min_width / $grid) * $combine_span)); // comparison operator for min
+	$if_max_width: ((($max_width / $grid) * $combine_span)); // comparison operator for max
+	//min and max in ems
+	$min_grid_width_em: $if_min_width/$font_px;
+	$max_grid_width_em: $if_max_width/$font_px;
+	
+	@include media_query_gen($min_width, $max_width) {
+			.gridspan_#{$grid}_span#{$combine_span} {
+				@if($if_max_width >= $if_grid_width) {
+					width: $grid_width_em +0em;
+				}
+				@else {
+					width: $max_grid_width_em +0em;
+				}
+				margin:0;
+				display:table-cell;
+				@content;
+
+				& > div {
+				margin: 0 $gutter_em +0em;
+				}
+			}
+	}
+}
+
+// for creating media queries on the fly for overriding widths at various breakpoints
+// this one assumes you have a set width for your container so elements will have a min and max of their grid element and will not grow larger than the page itself
+@mixin media_minonly ($combine_span, $min_width) {
+	$if_grid_width: ((($page_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for if statements
+	$grid_width_em: $if_grid_width/$font_px; // convert from pixels to em
+	// min in pixels
+	$if_min_width: ((($min_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for min
+	//min in ems
+	$min_grid_width_em: $if_min_width/$font_px;
+	
+	@include media_query_minonly($min_width) {
+			.gridspan_#{$grid}_span#{$combine_span} {
+				@if($if_min_width >= $if_grid_width) {
+					width: $grid_width_em +0em;					
+				}
+				@else {
+					width: $min_grid_width_em +0em;
+				}
+				margin: 0 $gutter_em +0em;
+				float:left;
+				@content;
+			}
+	}
+}
+
+// create 100% fluid grids for smaller displayers
+@mixin mobile_grid ($combine_span) {
+	.gridspan_#{$grid}_span#{$combine_span} {	
+		margin: 0 $gutter_em +0em $gutter_em +0em;
+		@content;
+	}
+}
+
+
+//pushing and pulling elements
+// we still have our gutter em margin on both sides although its not actually applied to any element at the moment
+@mixin combine_pushpull($combine_span, $pushpull: push) {
+	$grid_push_width_em: (($page_width / $grid) * $combine_span)/$font_px; //math for grid width
+	
+	@if $pushpull == push {
+		.push_#{$combine_span} { 
+			margin-right: -($grid_push_width_em +0em);
+		}
+		
+		%push_#{$combine_span} {
+			padding-left: $grid_push_width_em +0em;
+		}
+	}
+	@else if $pushpull == pull {
+		.pull_#{$combine_span} {
+			margin-left: -($grid_push_width_em +0em);
+			float: right;
+		}
+		
+		%pull_#{$combine_span} {
+			padding-right: $grid_push_width_em +0em;
+		}
+	
+	}
+	
+	// 3rd placeholder for the widths negative margin and float required to make this work
+	%pushpull {
+		width: 100%;
+		margin-right: -100%;
+		float: left;
+	}
+}

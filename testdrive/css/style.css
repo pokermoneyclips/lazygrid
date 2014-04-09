@@ -1,0 +1,626 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1,
+h2, h2, h3, #home h2, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.gridspan_12_span1_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span1_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span1 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span1_up {
+    width: 9%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span1_down {
+    width: 8%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span1 {
+    width: 2.50521em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span1 {
+    width: 2.92188em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span1 {
+    width: 3.33854em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span1 {
+    width: 3.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span2_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span2_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span2 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span2_up {
+    width: 17%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span2_down {
+    width: 16%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span2 {
+    width: 6.26042em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span2 {
+    width: 7.09375em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span2 {
+    width: 7.92708em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span2 {
+    width: 8.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span3_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span3_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span3 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span3_up {
+    width: 25%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span3_down {
+    width: 25%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span3 {
+    width: 10.01563em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span3 {
+    width: 11.26563em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span3 {
+    width: 12.51563em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span3 {
+    width: 13.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span4_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span4_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span4 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span4_up {
+    width: 34%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span4_down {
+    width: 33%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span4 {
+    width: 13.77083em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span4 {
+    width: 15.4375em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span4 {
+    width: 17.10417em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span4 {
+    width: 18.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span5_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span5_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span5 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span5_up {
+    width: 42%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span5_down {
+    width: 41%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span5 {
+    width: 17.52604em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span5 {
+    width: 19.60938em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span5 {
+    width: 21.69271em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span5 {
+    width: 23.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span6_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span6_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span6 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span6_up {
+    width: 50%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span6_down {
+    width: 50%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span6 {
+    width: 21.28125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span6 {
+    width: 23.78125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span6 {
+    width: 26.28125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span6 {
+    width: 28.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span7_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span7_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span7 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span7_up {
+    width: 59%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span7_down {
+    width: 58%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span7 {
+    width: 25.03646em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span7 {
+    width: 27.95313em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span7 {
+    width: 30.86979em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span7 {
+    width: 33.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span8_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span8_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span8 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span8_up {
+    width: 67%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span8_down {
+    width: 66%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span8 {
+    width: 28.79167em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span8 {
+    width: 32.125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span8 {
+    width: 35.45833em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span8 {
+    width: 38.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span9_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span9_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span9 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span9_up {
+    width: 75%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span9_down {
+    width: 75%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span9 {
+    width: 32.54688em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span9 {
+    width: 36.29688em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span9 {
+    width: 40.04688em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span9 {
+    width: 43.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span10_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span10_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span10 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span10_up {
+    width: 84%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span10_down {
+    width: 83%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span10 {
+    width: 36.30208em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span10 {
+    width: 40.46875em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span10 {
+    width: 44.63542em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span10 {
+    width: 48.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span11_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span11_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span11 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span11_up {
+    width: 92%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span11_down {
+    width: 91%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span11 {
+    width: 40.05729em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span11 {
+    width: 44.64063em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span11 {
+    width: 49.22396em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span11 {
+    width: 53.75em;
+    margin: 0 0.625em;
+    float: left; } }
+.gridspan_12_span12_up {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span12_down {
+  width: 100%;
+  padding: 0 0.625em; }
+
+.gridspan_12_span12 {
+  margin: 0 0.625em 0.625em; }
+
+@media screen and (min-width: 721px) {
+  .gridspan_12_span12_up {
+    width: 100%;
+    padding: 0 0.625em;
+    float: left; }
+
+  .gridspan_12_span12_down {
+    width: 100%;
+    padding: 0 0.625em;
+    float: left; } }
+@media (min-width: 46.3125em) {
+  .gridspan_12_span12 {
+    width: 43.8125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 51.3125em) {
+  .gridspan_12_span12 {
+    width: 48.8125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 56.3125em) {
+  .gridspan_12_span12 {
+    width: 53.8125em;
+    margin: 0 0.625em;
+    float: left; } }
+@media (min-width: 61.25em) {
+  .gridspan_12_span12 {
+    width: 58.75em;
+    margin: 0 0.625em;
+    float: left; } }
+@font-face {
+  font-family: 'socicon';
+  src: url("fonts/socicon/socicon-webfont.eot");
+  src: url("fonts/socicon/socicon-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/socicon/socicon-webfont.woff") format("woff"), url("fonts/socicon/socicon-webfont.ttf") format("truetype"), url("fonts/socicon/socicon-webfont.svg#sociconregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'permanent_markerregular';
+  src: url("fonts/permanentmarker/PermanentMarker-webfont.eot");
+  src: url("fonts/permanentmarker/PermanentMarker-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/permanentmarker/PermanentMarker-webfont.woff") format("woff"), url("fonts/permanentmarker/PermanentMarker-webfont.ttf") format("truetype"), url("fonts/permanentmarker/PermanentMarker-webfont.svg#permanent_markerregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  background: #ecf0f1;
+  font-family: arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0; }
+
+h1, h2, h2, h3, #home h2, h4, h5, h6 {
+  color: white;
+  font-family: 'permanent_markerregular';
+  letter-spacing: 1px;
+  margin-bottom: 0.5em;
+  padding: 0 0.25em;
+  text-shadow: 4px 4px 4px #2c3e50; }
+
+h1, h2 {
+  font-size: 2em; }
+
+h3, #home h2 {
+  font-size: 1.75em; }
+
+ul li {
+  display: block;
+  padding: 0.5em 1em; }
+
+p {
+  margin-bottom: 0.25em; }
+
+.adaptive {
+  margin: 0 auto;
+  max-width: 60em; }
+  .adaptive header, .adaptive #about, .adaptive #sassout, .adaptive #selectors, .adaptive footer {
+    margin: 0 0.625em; }
+
+.fluid {
+  width: 100%; }
+  .fluid header, .fluid #about, .fluid #sassout, .fluid #selectors, .fluid footer {
+    padding: 0 0.625em; }
+
+.body-wrapper {
+  overflow: hidden; }
+
+label {
+  display: block;
+  font-weight: bold; }
+
+select {
+  clear: both;
+  display: inline-block; }
+
+footer {
+  clear: both;
+  margin: 1em 0;
+  text-align: center; }
+
+code {
+  background: white;
+  border: 1px solid black;
+  display: block;
+  margin: 1em 0;
+  padding: 1em; }
+
+button {
+  display: block;
+  margin: 1em 0; }

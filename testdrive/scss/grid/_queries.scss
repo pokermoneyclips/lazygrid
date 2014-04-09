@@ -1,0 +1,65 @@
+//media queries
+@mixin breakpoint($point) {
+  @if $point == smallest { // $page_min to $tiny_max
+    @media (min-width:$page_min_em+0em) and (max-width: $tiny_max_em+0em) { @content; }
+  }
+  @else if $point == small { // $tiny_max to $small_max
+    @media (min-width:$tiny_max_em+0em) and (max-width: $small_max_em+0em) { @content; }
+  }
+  @else if $point == medium { // $small_max to $medium_max
+    @media (min-width:$small_max_em+0em) and (max-width: $medium_max_em+0em)  { @content; }
+  }
+  @else if $point == mediumish { // $medium_max to $page_width
+    @media (min-width:$medium_max_em+0em) and (max-width: $page_width_em+0em)  { @content; }
+  }
+  @else if $point == full { // $page_width
+    @media (min-width: $page_width_em+0em)  { @content; }
+  }  
+  
+}
+
+// for containers
+@mixin bodyminmax($sizes) {
+	@if $sizes == smallest { // 320 to 480
+		//min-width: $page_min_em +0em;
+		//max-width: $tiny_max_em +0em;
+		width: $page_min_em +0em;
+	}
+
+	@else if $sizes == small { // 480 to 600
+		//min-width: $tiny_max_em +0em;
+		//max-width: $small_max_em +0em;
+		width: $tiny_max_em +0em;
+
+	}
+	
+	@else if $sizes == medium { // 600 to 768
+//		min-width: $small_max_em +0em;
+		max-width: $medium_max_em +0em;
+	}
+	
+	@else if $sizes == mediumish { // 768 to 960
+//		min-width: $medium_max_em +0em;
+		max-width: $page_width_em +0em;
+	}
+	  
+	@else if $sizes == full { // 960
+//		min-width: $page_width_em +0em;
+		max-width: $page_width_em +0em;
+	}  	
+}
+
+// !-- all media query related mixins used throughout the grids
+// media query generator used for media_column
+@mixin media_query_gen($min_width, $max_width) {
+	@media (min-width:($min_width + 20)/$font_px +0em) and (max-width:($max_width + 20)/$font_px +0em) {
+		@content;
+	}
+}
+
+// media query generator used for media_minonly
+@mixin media_query_minonly($min_width) {
+	@media (min-width:($min_width + 20)/$font_px +0em) {
+		@content;
+	}
+}

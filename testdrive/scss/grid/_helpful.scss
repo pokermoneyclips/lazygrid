@@ -1,0 +1,83 @@
+//switch to box model for easier math from http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+//http://sachagreif.com/useful-sass-mixins/
+@function black($opacity){
+    @return rgba(0,0,0,$opacity)
+}
+@function white($opacity){
+    @return rgba(255,255,255,$opacity)
+}
+
+@mixin box-emboss($opacity, $opacity2){
+    box-shadow:white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+@mixin letterpress($opacity){
+    text-shadow:white($opacity) 0 1px 0;
+}
+
+// http://stackoverflow.com/questions/7895796/can-a-sass-mixin-accept-an-undefined-number-of-arguments
+@mixin transition($transitions...) {
+	-webkit-transition: $transitions;
+	-moz-transition: $transitions;
+	-ms-transition: $transitions;
+	-o-transition: $transitions;
+	transition: $transitions;
+}
+
+
+@mixin transform($transforms...) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	-o-transform: $transforms;
+	transform: $transforms;
+}
+
+@mixin boxshadow($shadows...) {
+	-moz-box-shadow: $shadows;
+	-webkit-box-shadow: $shadows;
+	box-shadow: $shadows;
+}
+
+@mixin textshadow($textshadows...) {
+	text-shadow: $textshadows;
+}
+
+
+@mixin rounded($radius) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+
+// Media Queries
+@mixin min_width {
+	@media screen and (min-width:721px) {
+		@content; 
+	}
+}
+
+@mixin media_width($width) {
+	@media screen and (min-width: $width + 0px) {
+		@content;
+	}
+}
+
+@mixin max_width {
+	@media screen and (max-width:720px) {
+		@content; 
+	}
+}

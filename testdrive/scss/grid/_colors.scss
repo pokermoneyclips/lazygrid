@@ -1,0 +1,62 @@
+// set default colors (grabbed from bootstrap then rewritten as I didnt like grayDarker)
+// Grays
+// -------------------------
+$black:                 #000;
+$darkergray:            #222;
+$darkgray:              #333;
+$gray:                  #555;
+$lightgray:             #999;
+$lightergray:           #eee;
+$white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+$blue:                  #049cdb;
+$darkblue:              #0064cd;
+$green:                 #46a546;
+$red:                   #9d261d;
+$yellow:                #ffc40d;
+$orange:                #f89406;
+$pink:                  #c3325f;
+$purple:                #7a43b6;
+
+
+
+// container colors
+$bodybg: $black; // the background for the body tag
+$containbg: $white; // the background for the container
+$footerbg: $black; // the background for the footer
+
+
+// basic font colors
+$fontcolor: $black; // the overall font color
+$licolor: $black; // the color for lists
+
+
+// Headings
+// Heading Sizes
+$h1fsize: 2; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+$h2fsize: 1.75; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+$h3fsize: 1.5; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+$h4fsize: 1.3; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+$h5fsize: 1.2; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+$h6fsize: 1.1; // how much larger do you want your h1 compared to base font size (this will be a multiplied value)
+
+// Heading Colors
+$h1fcolor: $black; // the color for your h1
+$h2fcolor: $gray; // the color for your h2
+$h3fcolor: $darkergray; // the color for your h3
+$h4fcolor: $darkgray; // the color for your h4
+$h5fcolor: $lightergray; // the color for your h5
+$h6fcolor: $lightgray; // the color for your h6
+
+
+
+// math for headings -- DO NOT EDIT --
+$h1size: ($h1fsize * $font_px) / $font_px +0em;
+$h2size: ($h2fsize * $font_px) / $font_px +0em;
+$h3size: ($h3fsize * $font_px) / $font_px +0em;
+$h4size: ($h4fsize * $font_px) / $font_px +0em;
+$h5size: ($h5fsize * $font_px) / $font_px +0em;
+$h6size: ($h6fsize * $font_px) / $font_px +0em;

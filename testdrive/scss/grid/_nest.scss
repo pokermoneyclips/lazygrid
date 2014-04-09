@@ -1,0 +1,153 @@
+// !-- All nesting items will be found here in an effort to keep things neat and organized --
+//mixin for nesting columns
+@mixin nesting ($combine_span, $nest_span) {
+$grid_width_px: ((($page_width / $grid) * $combine_span) - $gutters_px); //math for grid width
+$nest_width_px: ($grid_width_px - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // I have zero clue how I came up with this equation but it works
+$nest_width_em: $nest_width_px/$font_px; //math for nest width
+	@if($nest_span > $combine_span) { //print nothing as this grid won't work
+	@debug $combine_span - $nest_span;
+	}
+	
+	@else { //give them what they wanted
+		.nest_span#{$combine_span}_ns#{$nest_span} {
+			width: $nest_width_em +0em;
+			margin: 0 $gutter_em +0em;
+			float:left;
+			@content;
+			
+			&:first-of-type { // remove margin left from first element nested as its parent already has this
+				margin-left:0;
+			}
+			
+			&:last-of-type { // remove margin right from last element nested as its parent already has this
+				margin-right:0;
+			}
+		}
+	}
+}
+
+// Media Nesting Query for min and max width returning a value that can be used with a table cell style
+@mixin media_nesting ($combine_span, $nest_span, $min_width, $max_width) {
+	$if_grid_width: ((($page_width / $grid) * $combine_span)); // comparison operator for if statements
+	$grid_width_em: $if_grid_width/$font_px; // convert from pixels to em	
+	$if_nest_width: ($if_grid_width - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+	$nest_width_em: $if_nest_width/$font_px; //math for nest width	
+	// min and max in pixels
+	$min_width_grid: ((($min_width / $grid) * $combine_span)); // comparison operator for min
+	$if_min_width: ($min_width_grid - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+	$max_width_grid: ((($max_width / $grid) * $combine_span)); // comparison operator for max
+	$if_max_width: ($max_width_grid - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+	//min and max in ems
+	$min_grid_width_em: $if_min_width/$font_px;
+	$max_grid_width_em: $if_max_width/$font_px;
+	
+	@include media_query_gen($min_width, $max_width) {
+			.nest_span#{$combine_span}_ns#{$nest_span} {
+				@if($if_max_width >= $if_nest_width) {
+					width: $nest_width_em +0em;
+				}
+				@else {
+					width: $max_grid_width_em +0em;
+				}
+				margin:0;
+				display:table-cell;
+				@content;
+			
+				& > div {
+					margin: 0 $gutter_em +0em;
+				}
+				
+				&:first-of-type > div {
+					margin-left:0;
+				}
+				
+				&:last-of-type > div {
+					margin-right:0;
+				}
+			}
+		}
+}
+
+// THIS ONE IS NOT NECESSARY AND IS IN FACT WRONG. THE WAY THIS IS WRITTEN MIN ONLY WOULDNT NEED TO BE DISPLAYED THIS WAY AS ITS UNRESPONSIVE. IF THE CONTAINER GREW THEN YES IT WOULD NEED TO BE THIS WAY
+// Media Nesting Query for min only width returning a value that can be used with a table cell style
+@mixin media_nestmin ($combine_span, $nest_span, $min_width) {
+	$if_grid_width: ((($page_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for if statements
+	$grid_width_em: $if_grid_width/$font_px; // convert from pixels to em	
+	$if_nest_width: ($if_grid_width - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+	$nest_width_em: $if_nest_width/$font_px; //math for nest width	
+	// min in pixels
+	$min_width_grid: ((($min_width / $grid) * $combine_span) - ($gutters_px)); // comparison operator for min
+	$if_min_width: ($min_width_grid - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // for our if statement
+	//min in ems
+	$min_grid_width_em: $if_min_width/$font_px;
+	
+	@include media_query_minonly($min_width) {
+			.nest_span#{$combine_span}_ns#{$nest_span} {
+				@if($if_min_width >= $if_nest_width) {
+					min-width: $nest_width_em +0em;
+					max-width: $nest_width_em +0em;
+				}
+				@else {
+					min-width: $min_grid_width_em +0em;
+					max-width: $min_grid_width_em +0em;
+				}
+				margin:0;
+				display:table-cell;
+				@content;
+			}
+		}
+}
+
+// Adaptive Media Queries
+// Min and Max
+@mixin nestmax_adapt ($combine_span, $nest_span, $min_width, $max_width) {
+	$grid_width_px: ((($min_width / $grid) * $combine_span) - ($gutters_px));
+	$nest_width_px: ($grid_width_px - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // I have zero clue how I came up with this equation but it works
+	$nest_width_em: $nest_width_px/$font_px; //math for nest width
+	@include media_query_gen($min_width, $max_width) {
+		.nest_span#{$combine_span}_ns#{$nest_span} {
+			width: $nest_width_em +0em;	
+			margin: 0 $gutter_em +0em;
+			float:left;						
+			@content;
+				&:first-of-type { // remove margin left from first element nested as its parent already has this
+					margin-left:0;
+				}
+				
+				&:last-of-type { // remove margin right from last element nested as its parent already has this
+					margin-right:0;
+				}
+			}
+	}
+}
+
+// Min only
+@mixin nest_adapt ($combine_span, $nest_span, $min_width) {
+	$grid_width_px: ((($min_width / $grid) * $combine_span) - ($gutters_px));
+	$nest_width_px: ($grid_width_px - $gutter_px * (($nest_span - 1) * 2))/$nest_span; // I have zero clue how I came up with this equation but it works
+	$nest_width_em: $nest_width_px/$font_px; //math for nest width
+	@include media_query_minonly($min_width) {
+		.nest_span#{$combine_span}_ns#{$nest_span} {
+			width: $nest_width_em +0em;	
+			margin: 0 $gutter_em +0em;
+			float:left;						
+			@content;
+				&:first-of-type { // remove margin left from first element nested as its parent already has this
+					margin-left:0;
+				}
+				
+				&:last-of-type { // remove margin right from last element nested as its parent already has this
+					margin-right:0;
+				}
+			}
+	}
+}
+
+
+// create 100% fluid grids for smaller displayers
+@mixin mobile_nesting ($combine_span, $nest_span) {
+		.nest_span#{$combine_span}_ns#{$nest_span} {
+			margin: 0; // If its nested it means theres already a margin on it from its container
+			@content;
+		}
+}

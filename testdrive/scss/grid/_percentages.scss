@@ -1,0 +1,164 @@
+// dont forget to run changing the precision value of percentages to make life grand
+// sass --precision 6 input.scss output.css
+// http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+// produces equally sized grid items
+@mixin grid_percent() {
+	$grid_width_percent: (100 / $grid); //math for grid width
+	.grid_#{$grid} {
+		width: $grid_width_percent +0%;
+		padding: 0 $gutter_em +0em;
+		float:left;
+		@content;
+	}			
+}
+
+
+// $combine_span is the number of grid items you'd like to conjoin together
+@mixin percent_combine ($combine_span, $upordown: up) {
+	$grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
+	.gridspan_#{$grid}_span#{$combine_span}_#{$upordown} {
+		@if ($upordown == up) {
+			width: ceil($grid_width_percent) +0%;
+		}
+		@else {
+			width: floor($grid_width_percent) +0%;		
+		}
+		padding: 0 $gutter_em +0em;					
+		@content;
+	}
+}
+
+// push and pull classes for grid elements
+@mixin percent_pushnpull($combine_span, $upordown:up, $pushpull: push) {
+$grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
+	@if($upordown == up and $pushpull == push) {
+		.push_#{$combine_span} {	
+			margin-right: -(ceil($grid_width_percent) +0%);
+			float: left;
+		}
+		%push_#{$combine_span} {
+			padding-left: (ceil($grid_width_percent) +0%);
+		}
+	}
+		
+	@else if($upordown == down and $pushpull == push)  {
+		.push_#{$combine_span} {
+			margin-right: -(floor($grid_width_percent) +0%);
+			float: left;
+		}
+		%push_#{$combine_span} {
+			padding-left: (floor($grid_width_percent) +0%);
+		}
+	}
+	
+	@else if($upordown == up and $pushpull == pull) {
+		.pull_#{$combine_span} {
+			margin-left: -(ceil($grid_width_percent) +0%);
+			float: right;
+		}
+		%pull_#{$combine_span} {
+			padding-right: (ceil($grid_width_percent) +0%);
+		}
+	}
+	
+	@else if($upordown == down and $pushpull == pull) {
+		.pull_#{$combine_span} {
+			margin-left: -(floor($grid_width_percent) +0%);
+			float: right;
+		}
+		%pull_#{$combine_span} {
+			padding-right: (ceil($grid_width_percent) +0%);
+		}
+	}
+}
+
+// Create grids that push or pull as well at the same time
+@mixin percent_combine_push($combine_span, $upordown:up, $pushpull: push) {
+$grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
+
+	@if($upordown == up and $pushpull == push) {
+		.gridspan_#{$grid}_span#{$combine_span}_#{$upordown}_#{$pushpull} {
+			width: ceil($grid_width_percent) +0%;
+			margin-right: -(ceil($grid_width_percent) +0%);
+			float: left;
+			padding: 0 $gutter_em +0em;					
+			@content;
+		}
+		%push_#{$combine_span} {
+			padding-left: (ceil($grid_width_percent) +0%);
+		}
+	}
+		
+	@else if($upordown == down and $pushpull == push)  {
+		.gridspan_#{$grid}_span#{$combine_span}_#{$upordown}_#{$pushpull} {
+			width: floor($grid_width_percent) +0%;
+			margin-right: -(floor($grid_width_percent) +0%);
+			float: left;
+			padding: 0 $gutter_em +0em;					
+			@content;
+		}
+		%push_#{$combine_span} {
+			padding-left: (floor($grid_width_percent) +0%);
+		}
+	}
+	
+	@else if($upordown == up and $pushpull == pull) {
+		.gridspan_#{$grid}_span#{$combine_span}_#{$upordown}_#{$pushpull} {
+			width: ceil($grid_width_percent) +0%;
+			margin-left: -(ceil($grid_width_percent) +0%);
+			float: right;
+			padding: 0 $gutter_em +0em;					
+			@content;
+		}
+		%pull_#{$combine_span} {
+			padding-right: (ceil($grid_width_percent) +0%);
+		}
+	}
+	
+	@else if($upordown == down and $pushpull == pull) {
+		.gridspan_#{$grid}_span#{$combine_span}_#{$upordown}_#{$pushpull} {
+			width: floor($grid_width_percent) +0%;
+			margin-left: -(floor($grid_width_percent) +0%);
+			float: right;
+			padding: 0 $gutter_em +0em;					
+			@content;
+		}
+		%pull_#{$combine_span} {
+			padding-right: (floor($grid_width_percent) +0%);
+		}
+	}
+}
+
+
+// This is a doubler if youd like to double the percent width of an item
+@mixin percent_tablet($combine_span) {
+	$grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
+	.gridspan_#{$grid}_span#{$combine_span}_up {
+		width: ceil($grid_width_percent) * 2 +0%;
+		padding: 0 $gutter_em +0em;
+		@content;
+	}
+	
+	.gridspan_#{$grid}_span#{$combine_span}_down {
+		width:floor($grid_width_percent) * 2 +0%;
+		padding: 0 $gutter_em +0em;
+		@content;
+	}
+}
+
+
+// For setting 100% widths for smaller displays
+@mixin percent_mobile($combine_span) {
+	.gridspan_#{$grid}_span#{$combine_span}_up {
+		width:100%;
+		padding: 0 $gutter_em +0em;
+		@content;
+	}
+	
+	.gridspan_#{$grid}_span#{$combine_span}_down {
+		width:100%;
+		padding: 0 $gutter_em +0em;
+		@content;
+	}
+}
