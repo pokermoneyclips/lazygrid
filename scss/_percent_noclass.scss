@@ -26,17 +26,26 @@
 // Create grids that push or pull as well at the same time
 // This would be used for your sidebars
 // Dont call this on any class as its only creating extends
-@mixin percent_combine_push($combine_span, $upordown:up, $pushpull: push) {
+// TODO: Work out solution that would allow an element to push at one size and pull at another - Currently one will override the other
+@mixin percent_combine_push($combine_span, $upordown:up, $pushpull: push, $paddingclear: false) {
 $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 
 	@if($upordown == up and $pushpull == push) {
 		%gridpush_#{$combine_span} {
 			width: ceil($grid_width_percent) +0%;
 			margin-right: -(ceil($grid_width_percent) +0%);
-			float: left;
+			float: left;			
 			padding: 0 $gutter_em +0em;					
 		}
-			
+		
+	@if ($paddingclear != false) {
+		%clearpush_#{$combine_span} {
+			width: ceil($grid_width_percent) +0%;
+			margin-right: -(ceil($grid_width_percent) +0%);
+			float: left;			
+		}
+	}
+		
 		%push_#{$combine_span} {
 			padding-left: (ceil($grid_width_percent) +0%);
 		}
@@ -47,8 +56,17 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: floor($grid_width_percent) +0%;
 			margin-right: -(floor($grid_width_percent) +0%);
 			float: left;
-			padding: 0 $gutter_em +0em;					
+			padding: 0 $gutter_em +0em;						
 		}
+		
+		@if ($paddingclear != false) {
+			%clearpush_#{$combine_span} {
+				width: floor($grid_width_percent) +0%;
+				margin-right: -(floor($grid_width_percent) +0%);
+				float: left;			
+			}
+		}
+		
 
 		%push_#{$combine_span} {
 			padding-left: (floor($grid_width_percent) +0%);
@@ -60,8 +78,17 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: ceil($grid_width_percent) +0%;
 			margin-left: -(ceil($grid_width_percent) +0%);
 			float: right;
-			padding: 0 $gutter_em +0em;					
+			padding: 0 $gutter_em +0em;										
 		}
+		
+		@if ($paddingclear != false) {
+			%clearpull_#{$combine_span} {
+				width: ceil($grid_width_percent) +0%;
+				margin-left: -(ceil($grid_width_percent) +0%);
+				float: right;			
+			}
+		}
+		
 		
 		%pull_#{$combine_span} {
 			padding-right: (ceil($grid_width_percent) +0%);
@@ -73,7 +100,15 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: floor($grid_width_percent) +0%;
 			margin-left: -(floor($grid_width_percent) +0%);
 			float: right;
-			padding: 0 $gutter_em +0em;					
+			padding: 0 $gutter_em +0em;						
+		}
+		
+		@if ($paddingclear != false) {
+			%clearpull_#{$combine_span} {
+				width: floor($grid_width_percent) +0%;
+				margin-left: -(floor($grid_width_percent) +0%);
+				float: right;			
+			}
 		}
 		
 		%pull_#{$combine_span} {
@@ -101,7 +136,7 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 
 
 // For setting 100% widths for smaller displays
-@mixin percent_mobile($combine_span) {
+@mixin percent_mobile() {
 	width:100%;
 	padding: 0 $gutter_em +0em;
 }
