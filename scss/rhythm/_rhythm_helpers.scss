@@ -1,0 +1,120 @@
+﻿// Helper Mixin used in rhythm for setting font-size
+@mixin em_to_rem($desired-size, $unit) {
+	@if ($unit == "rem") {
+		font-size: $desired-size + 0px;
+		font-size: $desired-size/$font_px + $unit;
+	}
+	@elseif ($unit == "em") {
+		font-size: $desired-size/$font_px + $unit;	
+	}
+	@elseif ($unit == "px") {
+		font-size: $desired-size + $unit;		
+	}
+}
+
+
+// This function should clean up our math a bit and give us our adjusted size to play with
+// This is only correct for EMs for margins
+// Unitless measurements are correct
+@function adjusting_spacing($desired-size) {
+	$correct-size: $line-height_px / $desired-size;
+	@return $correct-size;
+}
+
+
+// Adjust line height and margins
+// Rounding values to try and clean things up a bit
+// Set defaults of margins to our variables
+@mixin margin_rhythm($desired-size, $unit, $lazy-margin-top: $rhythm-margin-top, $lazy-margin-bottom: $rhythm-margin-bottom) {
+	
+	line-height: adjusting_spacing($desired-size);
+
+	@if ($unit == "rem") {
+		@if ($lazy-margin-top > 0) {
+			margin-top: $line-height_px *$lazy-margin-top + 0px;  // Pixel fallback		
+			margin-top: $line-height_em *$lazy-margin-top + $unit;
+		}
+		@if ($lazy-margin-bottom > 0) {
+			margin-bottom: $line-height_px *$lazy-margin-bottom + 0px;  // Pixel fallback		
+			margin-bottom: $line-height_em *$lazy-margin-bottom + $unit;		
+		}
+	}
+	@elseif ($unit == "em") {
+		@if ($lazy-margin-top > 0) {
+			margin-top: adjusting_spacing($desired-size) * $lazy-margin-top +$unit;
+		}
+		@if ($lazy-margin-bottom > 0) {		
+			margin-bottom: adjusting_spacing($desired-size) * $lazy-margin-bottom + $unit;
+		}
+	}
+	@elseif ($unit == "px") {
+		@if ($lazy-margin-top > 0) {
+			margin-top: $line-height_px *$lazy-margin-top + 0px;  // Pixel fallback
+		}
+		@if ($lazy-margin-bottom > 0) {
+			margin-bottom: $line-height_px *$lazy-margin-bottom + 0px;  // Pixel fallback		
+		}
+	}
+}
+
+
+//kevinthompson.info/blog/2012/12/16/sass-border-shorthand-mixin.html
+@mixin border($border: false, $border_horizontal: false, $border_bottom: false, $border_left: false) {
+	$args: length($border);
+
+	// Reset Variables Based on Argument Count
+	@if ($args > 1 and length(nth($border,1)) > 1 or nth($border,1) == none) {
+
+		@if ($args == 4) {
+			$border_left: nth($border, 4);
+			$border_bottom: nth($border, 3);
+			$border_horizontal: nth($border, 2);
+			$border: nth($border, 1);
+		}
+		
+		@elseif ($args == 3) {
+			$border_bottom: nth($border, 3);
+			$border_horizontal: nth($border, 2);
+			$border: nth($border, 1);
+		}
+		
+		@elseif ($args == 2) {
+			$border_horizontal: nth($border, 2);
+			$border: nth($border, 1);
+		}
+	}
+			  
+	// Assign Attributes from Variables
+	@if ($border and $border_horizontal and $border_bottom and $border_left) {
+		border-top: $border;
+		border-right: $border_horizontal;
+		border-bottom: $border_bottom;
+		border-left: $border_left;
+	}
+	
+	@elseif ($border and $border_horizontal and $border_bottom) {
+		border: $border_horizontal;
+		border-top: $border;
+		border-bottom: $border_bottom;
+	}
+	
+	@elseif ($border and $border_horizontal) {
+		border: $border;
+		border-right: $border_horizontal;
+		border-left: $border_horizontal;
+	}
+	
+	@else {
+		border: $border;
+	}
+}
+
+
+// Get only the pixel value from our borders
+@function border_size($border-value) {
+
+	$border-width-dirty: nth($border-value, 1); // Example: 1px
+	$border-width-clean: $border-width-dirty / ($border-width-dirty * 0 + 1);
+
+	@return $border-width-clean;
+}

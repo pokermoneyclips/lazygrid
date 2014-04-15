@@ -1,0 +1,59 @@
+﻿// How many variations do you want ON TOP OF the starting point (if you want 6 set this to 5)
+$font-variations: 5;
+$smaller_font: $font_px / $typecast;
+$start: $font_px; // Starting Font Size
+
+
+// Create font size list increasing in size per $typecast scale
+@function font-stack($l, $start: $start) {
+	@for $i from 1 through $l {
+		$new: nth($start, length($start)) * $typecast;
+		$start: append($start, $new);
+	}
+	@return $start;
+}
+
+
+// Reverse the list
+//codepen.io/Acts7/pen/GyKxA
+@function reverse($list, $recursive: false) {
+	$result: ();
+
+	@for $i from length($list)*-1 through -1 {
+		$item: nth($list, abs($i));
+        
+    @if (length($item) > 1 and $recursive) {
+      $result: append($result, reverse($item, $recursive));      
+	}
+	
+    @else {
+      $result: append($result, $item);
+	}
+  }
+  @return $result;
+}
+
+
+$my-start: font-stack($font-variations);
+$large-to-small: reverse($my-start);
+
+
+// Colors and Sizes for H1 - H6
+$colors-list: #000 #c0392b #e74c3c #2980b9 #3498db #34495e;
+
+
+// Using a loop to set multiple elements at once
+@each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    h#{$i} { 
+		color: $current-color;
+		letter-spacing: 1px;
+		@include rhythm (nth($large-to-small, $i), px);
+		@include border_rhythm(nth($large-to-small, $i), px, 0, 1, 2px solid #000, 0px, 1px solid #FF0000);
+	}
+}
+
+// Example of how to call for a single element
+p {
+	@include rhythm($font_px, rem);
+}

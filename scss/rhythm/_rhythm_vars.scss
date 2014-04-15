@@ -1,0 +1,45 @@
+﻿// Font size defined inside of the _variables file
+
+// Desired Line Height
+// Set this as a value typically between 1.2 and 1.5
+// This will create your vertical rhythm
+$rhythm_value: 1.5;
+
+// Variables for margins and padding
+// Try to set top plus bottom equal to a whole number
+$rhythm-margin-top: 0.25;
+$rhythm-margin-bottom: 0.75;
+$rhythm-padding-top: 0.5;
+$rhythm-padding-bottom: 1;
+
+
+// These are the available scales to choose from
+// Set scale youd like to use in $typecast
+// call font-stack function to create your list to use in each loop
+//typecast.com/blog/a-more-modern-scale-for-web-typography
+//type-scale.com/
+
+// Variables
+$augmented_fourth: 1.414; 
+$golden_ratio: 1.618; 
+$major_second: 1.125;  
+$major_third: 1.250; 
+$major_sixth: 1.667; 
+$major_seventh: 1.875; 
+$major_tenth: 2.5;
+$minor_second: 1.067;
+$minor_third: 1.2;
+$minor_sixth: 1.6;
+$minor_seventh: 1.778;
+$octave: 2;
+$perfect_fourth: 1.333;
+$perfect_fifth: 1.5;
+
+$typecast: $minor_second;
+
+
+
+
+// Constant - Auto Adjusts
+$line-height_px: $font_px * $rhythm_value;
+$line-height_em: $font_em * $rhythm_value;
