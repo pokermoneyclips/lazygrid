@@ -1,4 +1,7 @@
-@import 'variables';
+@import 'grid/variables/reset';
+@import 'grid/variables/variables';
+@import 'grid/variables/queries';
+
 
 // produces equally sized grid items
 @mixin grid_width() {

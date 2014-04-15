@@ -1,6 +1,9 @@
-@import 'helpful';
-@import 'grid';
-@import 'nest';
+@import 'grid/variables/reset';
+@import 'grid/variables/variables';
+@import 'grid/variables/queries';
+@import 'grid/extends/helpful';
+@import 'grid/grid';
+@import 'grid/nest';
 
 body {
 font-size: $font+0%;

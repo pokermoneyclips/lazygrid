@@ -1,6 +1,3 @@
-@import 'variables';
-@import 'queries';
-
 // !-- All nesting items will be found here in an effort to keep things neat and organized --
 //mixin for nesting columns
 @mixin nesting ($combine_span, $nest_span) {
@@ -14,16 +11,17 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 	@else { //give them what they wanted
 		.nest_span#{$combine_span}_ns#{$nest_span} {
 			width: $nest_width_em +0em;
-			margin: 0 $gutter_em +0em;
-			float:left;
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			float: left;
 			@content;
 			
 			&:first-of-type { // remove margin left from first element nested as its parent already has this
-				margin-left:0;
+				margin-left: 0;
 			}
 			
 			&:last-of-type { // remove margin right from last element nested as its parent already has this
-				margin-right:0;
+				margin-right: 0;
 			}
 		}
 	}
@@ -52,20 +50,22 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 				@else {
 					width: $max_grid_width_em +0em;
 				}
-				margin:0;
-				display:table-cell;
+				margin-left: 0;
+				margin-right: 0;
+				display: table-cell;
 				@content;
 			
 				& > div {
-					margin: 0 $gutter_em +0em;
+					margin-left: $gutter_em +0em;
+					margin-right: $gutter_em +0em;
 				}
 				
 				&:first-of-type > div {
-					margin-left:0;
+					margin-left: 0;
 				}
 				
 				&:last-of-type > div {
-					margin-right:0;
+					margin-right: 0;
 				}
 			}
 		}
@@ -94,8 +94,9 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 					min-width: $min_grid_width_em +0em;
 					max-width: $min_grid_width_em +0em;
 				}
-				margin:0;
-				display:table-cell;
+				margin-left: 0;
+				margin-right: 0;
+				display: table-cell;
 				@content;
 			}
 		}
@@ -110,15 +111,16 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 	@include media_query_gen($min_width, $max_width) {
 		.nest_span#{$combine_span}_ns#{$nest_span} {
 			width: $nest_width_em +0em;	
-			margin: 0 $gutter_em +0em;
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
 			float:left;						
 			@content;
 				&:first-of-type { // remove margin left from first element nested as its parent already has this
-					margin-left:0;
+					margin-left: 0;
 				}
 				
 				&:last-of-type { // remove margin right from last element nested as its parent already has this
-					margin-right:0;
+					margin-right: 0;
 				}
 			}
 	}
@@ -132,15 +134,16 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 	@include media_query_minonly($min_width) {
 		.nest_span#{$combine_span}_ns#{$nest_span} {
 			width: $nest_width_em +0em;	
-			margin: 0 $gutter_em +0em;
-			float:left;						
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			float: left;						
 			@content;
 				&:first-of-type { // remove margin left from first element nested as its parent already has this
-					margin-left:0;
+					margin-left: 0;
 				}
 				
 				&:last-of-type { // remove margin right from last element nested as its parent already has this
-					margin-right:0;
+					margin-right: 0;
 				}
 			}
 	}
@@ -150,7 +153,8 @@ $nest_width_em: $nest_width_px/$font_px; //math for nest width
 // create 100% fluid grids for smaller displayers
 @mixin mobile_nesting ($combine_span, $nest_span) {
 		.nest_span#{$combine_span}_ns#{$nest_span} {
-			margin: 0; // If its nested it means theres already a margin on it from its container
+			margin-left: 0; // If its nested it means theres already a margin on it from its container
+			margin-right: 0;
 			@content;
 		}
 }

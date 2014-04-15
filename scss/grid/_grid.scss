@@ -1,15 +1,13 @@
-@import 'variables';
-@import 'queries';
-
 // !-- all grid mixins WITH PREDEFINED CLASSES will be found below in a cleanup effort to keep things neat and organized --
 // produces equally sized grid items
 @mixin grid_width() {
 	$grid_width_em: (($page_width / $grid) - ($gutter_px * 2))/$font_px; //math for grid width
 	.grid_#{$grid} {
-			width: $grid_width_em +0em;
-			margin: 0 $gutter_em +0em;
-			float:left;
-			@content;
+		width: $grid_width_em +0em;
+		margin-left: $gutter_em +0em;
+		margin-right: $gutter_em +0em;
+		float: left;
+		@content;
 	}			
 }
 
@@ -18,8 +16,9 @@
 	$grid_width_em: ((($page_width / $grid) * $combine_span) - ($gutters_px))/$font_px; //math for grid width
 	.gridspan_#{$grid}_span#{$combine_span} {
 		width: $grid_width_em +0em;	
-		margin: 0 $gutter_em +0em;
-		float:left;						
+		margin-left: $gutter_em +0em;
+		margin-right: $gutter_em +0em;
+		float: left;						
 		@content;
 	}
 }
@@ -31,10 +30,11 @@
 	@include media_query_gen($min_width, $max_width) {
 		.gridspan_#{$grid}_span#{$combine_span} {
 			width: $grid_width_em +0em;	
-			margin: 0 $gutter_em +0em;
-			float:left;						
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			float: left;						
 			@content;
-			}
+		}
 	}
 }
 
@@ -44,10 +44,11 @@
 	@include media_query_minonly($min_width) {
 		.gridspan_#{$grid}_span#{$combine_span} {
 			width: $grid_width_em +0em;	
-			margin: 0 $gutter_em +0em;
-			float:left;						
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			float: left;						
 			@content;
-			}
+		}
 	}
 }
 
@@ -63,25 +64,26 @@
 	$max_grid_width_em: $if_max_width/$font_px;
 	
 	@include media_query_gen($min_width, $max_width) {
-			.gridspan_#{$grid}_span#{$combine_span} {
-				@if($if_min_width >= $if_grid_width) {
-					min-width: $grid_width_em +0em;
-				}
-				@else {
-					min-width: $min_grid_width_em +0em;
-				}
-				@if($if_max_width >= $if_grid_width) {
-					max-width: $grid_width_em +0em;
-				}
-				@else {
-					max-width: $max_grid_width_em +0em;
-				}
-				margin:0 $gutter_em +0em;
-				display:inline-block;
-				vertical-align:top;
-				@content;
+		.gridspan_#{$grid}_span#{$combine_span} {
+			@if($if_min_width >= $if_grid_width) {
+				min-width: $grid_width_em +0em;
 			}
+			@else {
+				min-width: $min_grid_width_em +0em;
+			}
+			@if($if_max_width >= $if_grid_width) {
+				max-width: $grid_width_em +0em;
+			}
+			@else {
+				max-width: $max_grid_width_em +0em;
+			}
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			display: inline-block;
+			vertical-align: top;
+			@content;
 		}
+	}
 }
 
 
@@ -104,21 +106,23 @@
 	$max_grid_width_em: $if_max_width/$font_px;
 	
 	@include media_query_gen($min_width, $max_width) {
-			.gridspan_#{$grid}_span#{$combine_span} {
-				@if($if_max_width >= $if_grid_width) {
-					width: $grid_width_em +0em;
-				}
-				@else {
-					width: $max_grid_width_em +0em;
-				}
-				margin:0;
-				display:table-cell;
-				@content;
-
-				& > div {
-				margin: 0 $gutter_em +0em;
-				}
+		.gridspan_#{$grid}_span#{$combine_span} {
+			@if($if_max_width >= $if_grid_width) {
+				width: $grid_width_em +0em;
 			}
+			@else {
+				width: $max_grid_width_em +0em;
+			}
+			margin-left: 0;
+			margin-right: 0;
+			display: table-cell;
+			@content;
+
+			& > div {
+					margin-left: $gutter_em +0em;
+					margin-right: $gutter_em +0em;
+			}
+		}
 	}
 }
 
@@ -133,17 +137,18 @@
 	$min_grid_width_em: $if_min_width/$font_px;
 	
 	@include media_query_minonly($min_width) {
-			.gridspan_#{$grid}_span#{$combine_span} {
-				@if($if_min_width >= $if_grid_width) {
-					width: $grid_width_em +0em;					
-				}
-				@else {
-					width: $min_grid_width_em +0em;
-				}
-				margin: 0 $gutter_em +0em;
-				float:left;
-				@content;
+		.gridspan_#{$grid}_span#{$combine_span} {
+			@if($if_min_width >= $if_grid_width) {
+				width: $grid_width_em +0em;					
 			}
+			@else {
+				width: $min_grid_width_em +0em;
+			}
+			margin-left: $gutter_em +0em;
+			margin-right: $gutter_em +0em;
+			float: left;
+			@content;
+		}
 	}
 }
 

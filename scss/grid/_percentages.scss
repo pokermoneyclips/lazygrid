@@ -9,7 +9,8 @@
 	$grid_width_percent: (100 / $grid); //math for grid width
 	.grid_#{$grid} {
 		width: $grid_width_percent +0%;
-		padding: 0 $gutter_em +0em;
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;
 		float:left;
 		@content;
 	}			
@@ -26,7 +27,8 @@
 		@else {
 			width: floor($grid_width_percent) +0%;		
 		}
-		padding: 0 $gutter_em +0em;					
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;				
 		@content;
 	}
 }
@@ -84,7 +86,8 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: ceil($grid_width_percent) +0%;
 			margin-right: -(ceil($grid_width_percent) +0%);
 			float: left;
-			padding: 0 $gutter_em +0em;					
+			padding-left: $gutter_em +0em;
+			padding-right: $gutter_em +0em;				
 			@content;
 		}
 		%push_#{$combine_span} {
@@ -97,7 +100,8 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: floor($grid_width_percent) +0%;
 			margin-right: -(floor($grid_width_percent) +0%);
 			float: left;
-			padding: 0 $gutter_em +0em;					
+			padding-left: $gutter_em +0em;
+			padding-right: $gutter_em +0em;				
 			@content;
 		}
 		%push_#{$combine_span} {
@@ -110,7 +114,8 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: ceil($grid_width_percent) +0%;
 			margin-left: -(ceil($grid_width_percent) +0%);
 			float: right;
-			padding: 0 $gutter_em +0em;					
+			padding-left: $gutter_em +0em;
+			padding-right: $gutter_em +0em;					
 			@content;
 		}
 		%pull_#{$combine_span} {
@@ -123,7 +128,8 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 			width: floor($grid_width_percent) +0%;
 			margin-left: -(floor($grid_width_percent) +0%);
 			float: right;
-			padding: 0 $gutter_em +0em;					
+			padding-left: $gutter_em +0em;
+			padding-right: $gutter_em +0em;				
 			@content;
 		}
 		%pull_#{$combine_span} {
@@ -138,13 +144,15 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 	$grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 	.gridspan_#{$grid}_span#{$combine_span}_up {
 		width: ceil($grid_width_percent) * 2 +0%;
-		padding: 0 $gutter_em +0em;
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;
 		@content;
 	}
 	
 	.gridspan_#{$grid}_span#{$combine_span}_down {
 		width:floor($grid_width_percent) * 2 +0%;
-		padding: 0 $gutter_em +0em;
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;
 		@content;
 	}
 }
@@ -154,13 +162,15 @@ $grid_width_percent: ((100 / $grid) * $combine_span); //math for grid width
 @mixin percent_mobile($combine_span) {
 	.gridspan_#{$grid}_span#{$combine_span}_up {
 		width:100%;
-		padding: 0 $gutter_em +0em;
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;
 		@content;
 	}
 	
 	.gridspan_#{$grid}_span#{$combine_span}_down {
 		width:100%;
-		padding: 0 $gutter_em +0em;
+		padding-left: $gutter_em +0em;
+		padding-right: $gutter_em +0em;
 		@content;
 	}
 }
