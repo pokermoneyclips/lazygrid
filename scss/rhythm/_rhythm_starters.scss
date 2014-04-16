@@ -39,7 +39,7 @@ $large-to-small: reverse($my-start);
 
 
 // Colors and Sizes for H1 - H6
-$colors-list: #000 #c0392b #e74c3c #2980b9 #3498db #34495e;
+$colors-list: #FFF #c0392b #e74c3c #2980b9 #3498db #34495e;
 
 
 // Using a loop to set multiple elements at once
@@ -48,12 +48,19 @@ $colors-list: #000 #c0392b #e74c3c #2980b9 #3498db #34495e;
     h#{$i} { 
 		color: $current-color;
 		letter-spacing: 1px;
-		@include rhythm (nth($large-to-small, $i), px);
-		@include border_rhythm(nth($large-to-small, $i), px, 0, 1, 2px solid #000, 0px, 1px solid #FF0000);
+		@include rhythm (nth($large-to-small, $i), em);
 	}
+}
+
+h2 {
+	@include rhythm(nth($large-to-small, 2), em);
+	@include border_rhythm(nth($large-to-small, 2), em, 0, 1, 0px, 1px dashed #000, 1px solid #c0392b);
+	@include height_multiplier(nth($large-to-small, 2), em, 3);
+	@include horizontal_border_fix(nth($large-to-small, 2), em, 1);
 }
 
 // Example of how to call for a single element
 p {
-	@include rhythm($font_px, rem);
+	@include rhythm($font_px, em, 0, 1);
+	@include horizontal_rhythm($font_px, em, margin, 1, 1);
 }

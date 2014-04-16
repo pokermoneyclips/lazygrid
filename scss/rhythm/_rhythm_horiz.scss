@@ -1,0 +1,71 @@
+﻿// Horizontal Rhythm
+// Thisll be for padding and margins
+// Do not use this on the grid!!
+
+@mixin horizontal_rhythm($desired-size: $font_px, $unit: px, $marpad: margin, $lazy-marpad-right: 1, $lazy-marpad-left: 1) {
+
+	@if ($unit == "rem") {
+			#{$marpad}-right: $line-height_px *$lazy-marpad-right + 0px;  // Pixel fallback		
+			#{$marpad}-right: $line-height_em *$lazy-marpad-right + $unit;
+			#{$marpad}-left: $line-height_px *$lazy-marpad-left + 0px;  // Pixel fallback		
+			#{$marpad}-left: $line-height_em *$lazy-marpad-left + $unit;
+	}
+
+	@elseif ($unit == "em") {
+			#{$marpad}-right: adjusting_spacing($desired-size) * $lazy-marpad-right +$unit;
+			#{$marpad}-left: adjusting_spacing($desired-size) * $lazy-marpad-left + $unit;
+	}
+
+	@elseif ($unit == "px") {
+			#{$marpad}-right: $line-height_px *$lazy-marpad-right + 0px;  // Pixel fallback
+			#{$marpad}-left: $line-height_px *$lazy-marpad-left + 0px;  // Pixel fallback		
+	}
+}
+
+
+// For padding horizontally to correct for borders added horizontally
+@mixin horizontal_border_fix($desired-size: $font_px, $unit: px, $fix-border-right: 1, $fix-border-left: $fix-border-right, $lazy-pad-right: 0, $lazy-pad-left: 0) {
+
+	$padding-right: $line-height_px - $fix-border-right;
+	$padding-left: $line-height_px - $fix-border-left;
+	
+	@if ($unit == "rem") {
+		$padding-right: $padding-right/$font_px;
+		$padding-left: $padding-left/$font_px;
+	}
+
+	@elseif ($unit == "em") {
+		$padding-right: $padding-right/$desired-size;
+		$padding-left: $padding-left/$desired-size;
+	}
+	
+	// If theres no border and no padding apply nothing
+	// Left side
+	@if ($fix-border-left == 0 and $lazy-pad-left == 0) {
+		padding-left: 0;
+	}
+	
+	// If it has a border were going to force minimum padding
+	@elseif ($fix-border-left > 0 and $lazy-pad-left == 0) {
+		padding-left: $padding-left * 0.25 +$unit;
+	}
+	
+	@else {
+		padding-left: $padding-left * $lazy-pad-left +$unit;
+	}
+	
+	// Right Side
+	@if ($fix-border-right == 0 and $lazy-pad-right == 0) {
+		padding-right: 0;
+	}
+
+
+	// If it has a border were going to force minimum padding
+	@elseif ($fix-border-right > 0 and $lazy-pad-right == 0) {
+		padding-right: $padding-right * 0.25 +$unit;
+	}
+	
+	@else {
+		padding-right: $padding-right * $lazy-pad-right +$unit;
+	}	
+}

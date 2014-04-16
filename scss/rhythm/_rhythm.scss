@@ -7,33 +7,39 @@
 }
 
 
+// If you want to increase your line height use this
+@mixin height_multiplier($desired-size: $font_px, $unit: em, $multiplier: 1) {
+	line-height: adjusting_spacing($desired-size) * $multiplier;
+}
+
+
 // If not adding borders no need to compensate for them
 // pass in the font size you want to define if using EMs
 @mixin padding_rhythm($desired-size: $font_px, $unit: px, $lazy-padding-top: $rhythm-padding-top, $lazy-padding-bottom: $rhythm-padding-bottom) {
 
 	@if ($unit == "rem") {
-		@if ($lazy-padding-top > 0) {
+		@if ($lazy-padding-top >= 0) {
 			padding-top: $line-height_px *$lazy-padding-top + 0px;  // Pixel fallback		
 			padding-top: $line-height_em *$lazy-padding-top + $unit;
 		}
-		@if ($lazy-padding-bottom > 0) {
+		@if ($lazy-padding-bottom >= 0) {
 			padding-bottom: $line-height_px *$lazy-padding-bottom + 0px;  // Pixel fallback		
 			padding-bottom: $line-height_em *$lazy-padding-bottom + $unit;		
 		}
 	}
 	@elseif ($unit == "em") {
-		@if ($lazy-padding-top > 0) {
+		@if ($lazy-padding-top >= 0) {
 			padding-top: adjusting_spacing($desired-size) * $lazy-padding-top +$unit;
 		}
-		@if ($lazy-padding-bottom > 0) {		
+		@if ($lazy-padding-bottom >= 0) {		
 			padding-bottom: adjusting_spacing($desired-size) * $lazy-padding-bottom + $unit;
 		}
 	}
 	@elseif ($unit == "px") {
-		@if ($lazy-padding-top > 0) {
+		@if ($lazy-padding-top >= 0) {
 			padding-top: $line-height_px *$lazy-padding-top + 0px;  // Pixel fallback
 		}
-		@if ($lazy-padding-bottom > 0) {
+		@if ($lazy-padding-bottom >= 0) {
 			padding-bottom: $line-height_px *$lazy-padding-bottom + 0px;  // Pixel fallback		
 		}
 	}
@@ -41,7 +47,12 @@
 
 
 // Border compensation
-@mixin border_rhythm($desired-size: $font_px, $unit: px, $lazy-padding-top: $rhythm-padding-top, $lazy-padding-bottom: $rhythm-padding-bottom, $border: false, $border_horizontal: false, $border_bottom: false, $border_left: false) {
+// Also includes a horizontal rhythm for left and right padding on border elements
+@mixin border_rhythm(
+	$desired-size: $font_px, $unit: px, 
+	$lazy-padding-top: $rhythm-padding-top, $lazy-padding-bottom: $rhythm-padding-bottom, 
+	$border: false, $border_horizontal: false, $border_bottom: false, $border_left: false) 
+{
 	
 	// Lets get the borders so we can apply the correct padding
 	$border-top-value: 0; // Set default to zero
@@ -62,7 +73,7 @@
 	@else {
 		$border-bottom-value: $border-top-value; // This could possibly be zero if only horizontals are set
 	}
-
+	
 	
 	// Change variables about based on unit 
 	$line-height: $line-height_px;
@@ -77,14 +88,14 @@
 		
 		@if ($unit == "rem") {
 			padding-top: $padding-top +0px; // pixel fallback
-			padding-top: $padding-top/$font_px +unit;
+			padding-top: $padding-top/$font_px +$unit;
 			padding-bottom: $padding-bottom +0px; // pixel fallback
-			padding-bottom: $padding-bottom/$font_px +unit;
+			padding-bottom: $padding-bottom/$font_px +$unit;
 		}
 		
 		@elseif ($unit == "em") {
-			padding-top: $padding-top/$desired-size +unit;
-			padding-bottom: $padding-bottom/$desired-size +unit;		
+			padding-top: $padding-top/$desired-size +$unit;
+			padding-bottom: $padding-bottom/$desired-size +$unit;		
 		}
 		
 		@elseif ($unit == "px") {
@@ -152,11 +163,10 @@
 		@elseif ($unit == "px") {
 			padding-top: $padding-top * $lazy-padding-top +0px; // pixel fallback
 			padding-bottom: $padding-bottom * $lazy-padding-bottom +0px; // pixel fallback	
-		}
-	
-	
+		}	
 	}
 	
+
 	// Include Border in CSS
 	@include border($border, $border_horizontal, $border_bottom, $border_left);
 }

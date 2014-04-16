@@ -30,28 +30,28 @@
 	line-height: adjusting_spacing($desired-size);
 
 	@if ($unit == "rem") {
-		@if ($lazy-margin-top > 0) {
+		@if ($lazy-margin-top >= 0) {
 			margin-top: $line-height_px *$lazy-margin-top + 0px;  // Pixel fallback		
 			margin-top: $line-height_em *$lazy-margin-top + $unit;
 		}
-		@if ($lazy-margin-bottom > 0) {
+		@if ($lazy-margin-bottom >= 0) {
 			margin-bottom: $line-height_px *$lazy-margin-bottom + 0px;  // Pixel fallback		
 			margin-bottom: $line-height_em *$lazy-margin-bottom + $unit;		
 		}
 	}
 	@elseif ($unit == "em") {
-		@if ($lazy-margin-top > 0) {
+		@if ($lazy-margin-top >= 0) {
 			margin-top: adjusting_spacing($desired-size) * $lazy-margin-top +$unit;
 		}
-		@if ($lazy-margin-bottom > 0) {		
+		@if ($lazy-margin-bottom >= 0) {		
 			margin-bottom: adjusting_spacing($desired-size) * $lazy-margin-bottom + $unit;
 		}
 	}
 	@elseif ($unit == "px") {
-		@if ($lazy-margin-top > 0) {
+		@if ($lazy-margin-top >= 0) {
 			margin-top: $line-height_px *$lazy-margin-top + 0px;  // Pixel fallback
 		}
-		@if ($lazy-margin-bottom > 0) {
+		@if ($lazy-margin-bottom >= 0) {
 			margin-bottom: $line-height_px *$lazy-margin-bottom + 0px;  // Pixel fallback		
 		}
 	}
