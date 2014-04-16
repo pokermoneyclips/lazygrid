@@ -1,4 +1,5 @@
-﻿// Desired Line Height
+﻿// Font size defined inside of the _variables file
+// Desired Line Height
 // Set this as a value typically between 1.2 and 1.5
 // This will create your vertical rhythm
 $rhythm_value: 1.5;
@@ -39,6 +40,5 @@ $typecast: $minor_second;
 
 
 // Constant - Auto Adjusts
-$font_em: $font_px / $font_px;
 $line-height_px: $font_px * $rhythm_value;
 $line-height_em: $font_em * $rhythm_value;
